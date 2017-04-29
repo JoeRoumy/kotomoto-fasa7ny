@@ -1,0 +1,38 @@
+<div>
+  <div class="input-group">
+    Your title:  <input type="text" class="form-control" placeholder="your title" name="title" ng-model="title">
+    Give a brief description about your organization:  <input type="text" class="form-control" placeholder="Description" name="description" ng-model="description">
+    Provide a legal proof please:  <input type="text" class="form-control" placeholder="Legal Proof" name="legalProof" ng-model="legalProof">
+    Provide the type of your entertainment:  <textarea class="form-control" cols="40" rows="5" name="entertainmentType" ng-model="entartainmentType">
+    Branches:  <textarea class="form-control" cols="40" rows="5" name="branches" ng-model="branches">
+    Contacts:  <textarea class="form-control" cols="40" rows="5" name="contactMobile" ng-model="contactMobile">
+    <div>
+        <h3>Show us some media about your organization</h3>
+        <ul>
+            <li ng-repeat="media in media">
+            Type:  <input type="text" class="form-control" name="mediaTypes" ng-model="mediaTypes">
+            Select images: <input type="file" name="img" ng-model="url">
+            </li>
+            <li><button ng-click>add another media file</button></li>
+        </ul>
+
+   </div>
+
+<!--to be changed-->
+<button class="btn btn-default" ng-click="" ng-model="">Create Account</button>
+
+
+
+
+
+<!--a button to add activities!  ??-->
+
+
+
+
+
+
+
+
+  </div>
+</div>

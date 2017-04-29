@@ -1,0 +1,43 @@
+<div class="ui container" style="padding-top:100px">
+	<center><div class="panel panel-warning  wow fadeInDown" data-wow-delay="0.2s" data-wow-duration="2s" style="width:500px" ng-if="reviews.length == 0">
+    <div class="panel-heading">You didn't review any activity yet..</div>
+  </div></center>
+	<table class="ui selectable sortable celled table" ng-if="reviews.length != 0">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Activity</th>
+				<th>Review</th>
+				<th>Rating</th>
+				<th>Date</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr id="row_{{$index}}" ng-repeat="review in reviews">
+				<td>{{$index + 1}}</td>
+				<td><a href="/#/activity/{{review.activityId._id}}" /a>{{review.activityId.title}}</a></td>
+				<td style="position:relative;" ><span id="review_{{$index}}" >{{review.review}}</span>
+					<div  style="position:absolute;bottom:0;right:0;" ng-if="reviewEditable[$index]">
+						<div id="done" ng-click="update($index)" class="yellow btn btn-success" uib-tooltip="Done" style="height: 30px;border-radius: 15px;">
+							<i class="fa fa-check" aria-hidden="true"></i>
+						</div>
+						<div id="cancel" ng-click="cancelEditing($index)" class="yellow btn btn-danger" uib-tooltip="Cancel" style="height: 30px;border-radius: 15px;">
+							<i class="fa fa-times" aria-hidden="true"></i>
+						</div>
+					</div>
+				</td>
+				<td><star-rating-comp rating="review.rate" show-hover-stars="false" read-only="true" size="'med'"></star-rating-comp></td>
+				<td style="width: 130px;">{{review.time}} </td>
+				<td style="width: 120px;">
+						<!-- edit button -->
+						<div id="update" ng-click="enableUpdateReview($index)" class="yellow btn btn-warning hvr-icon-float-away" uib-tooltip="Edit review" style="height: 30px;width: 30px;border-radius: 15px;">
+						</div>
+						<!-- delete button -->
+						<div class="yellow btn btn-danger hvr-icon-sink-away" ng-click="delete($index)" uib-tooltip="Delete review" style="height: 30px;width: 30px;border-radius: 15px;">
+						</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,25 @@
+<div class="ui container" style="padding-top:100px">
+	<center><div class="panel panel-warning  wow fadeInDown" data-wow-delay="0.2s" data-wow-duration="2s" style="width:500px" ng-if="bookings.length == 0">
+    <div class="panel-heading">You didn't book any activity yet..</div>
+  </div></center>
+	<table class="ui selectable sortable celled table" ng-if="bookings.length != 0">
+		<thead>
+			<tr>
+				<th></th>
+				<th>ServiceProvider</th>
+				<th>Activity</th>
+				<th>Price</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr id="row_{{$index}}" class="{{booking.isCancelled?'danger':booking.isHolding?'warning':'success'}}" ng-repeat="booking in bookings">
+				<td>{{$index + 1}}</td>
+				<td>{{booking.serviceProviderId.title}}</td>
+				<td>{{booking.activityId.title}}</td>
+				<td>{{booking.price}}</td>
+				<td>{{booking.time}} </td>
+			</tr>
+		</tbody>
+	</table>
+</div>

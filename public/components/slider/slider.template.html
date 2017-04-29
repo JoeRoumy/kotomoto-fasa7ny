@@ -1,0 +1,27 @@
+<flex-slider style="height:300px" slide="media in $ctrl.data">
+	<li>
+		<img ng-src="img/{{media}}">
+	</li>
+</flex-slider>
+
+<style>
+.flex-direction-nav a{
+	    overflow: inherit !important;
+}
+.flexslider .slides img {
+margin: 0 auto; /* to centrize image*/
+width: auto;
+height:400px;
+display: block; }
+
+.flex-control-nav {
+  left: 42%;
+}
+.flex-control-paging li a.flex-active {
+    background: #06d0d8;
+    cursor: pointer;
+}
+.flex-control-nav li {
+    cursor: pointer;
+}
+</style>

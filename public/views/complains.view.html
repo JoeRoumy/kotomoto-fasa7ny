@@ -1,0 +1,37 @@
+<div class="ui container" style="padding-top:100px">
+	<center><div class="panel panel-warning  wow fadeInDown" data-wow-delay="0.2s" data-wow-duration="2s" style="width:500px" ng-if="reviews.length == 0">
+    <div class="panel-heading">You didn't review any activity yet..</div>
+  </div></center>
+	<table class="ui selectable sortable celled table" ng-if="complains.length != 0">
+		<thead>
+			<tr>
+				<th></th>
+				<th>complain </th>
+				<th>Status</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr id="row_{{$index}}" ng-repeat="Complain in complains">
+				<td>{{$index + 1}}</td>
+				<td><a >{{Complain.complain}}</a></td>
+                <td style="width: 130px;">{{Complain.isSeen}} </td>
+				<td style="width: 120px;">
+						<!-- change is seen status button -->
+						<div id="update" ng-click="isSeen($index)" class="yellow btn btn-warning hvr-icon-float-away" uib-tooltip="change seen status" style="height: 30px;width: 30px;border-radius: 15px;">
+						</div>
+						<!-- delete button -->
+            <div ng-if="Complain.isSeen==true" class="yellow btn btn-danger hvr-icon-sink-away" ng-click="delete($index)" uib-tooltip="Delete review" style="height: 30px;width: 30px;border-radius: 15px;">
+            </div>
+						<!-- ban forever button -->
+            <div class="yellow btn btn-info hvr-icon-sink-away fa fa- fa-times-circle-o" ng-click="banForever($index)" uib-tooltip="Ban forever" style="height: 30px;width: 30px;border-radius: 15px;">
+            </div>
+						<!-- ban 30 days button -->
+            <div class="yellow btn btn-info hvr-icon-sink-away fa fa-ban" ng-click="ban30($index)" uib-tooltip="Ban 30 days" style="height: 30px;width: 30px;border-radius: 15px;">
+            </div>
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

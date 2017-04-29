@@ -1,0 +1,21 @@
+<div  accept-charset="UTF-8">
+    <div style="padding-top: 20px">
+    <div class="">
+       <input type="text" name="title" ng-model="title" placeholder="Enter your title..">
+    </div>
+    <br> <br>
+    <div class="">
+       <input type="textarea" name="description" ng-model="description" placeholder="Enter your description..">
+    </div>
+    <br> <br>
+    <div class="">
+      <input type="textarea" name="legalProof" ng-model="legalProof" placeholder="Enter your legalProof.." >
+    </div>
+    <br><br>
+        <button class="btn btn-success btn-lg" ng-click="$ctrl.signupStepTwo()">Save</button>
+    </div>
+    <div class="errors">
+      {{errors}}
+      <br><br><br>
+    </div>
+</div>

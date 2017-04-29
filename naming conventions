@@ -1,0 +1,27 @@
+*please note that our naming terminology will follow camelCase convention for example letsGoForOurProject
+
+*a boolean variable should first start with "is" keyword
+ex: isVisitor
+
+*a controller should start with a small letter and end with "CTRL" all letters are capitalized 
+ex: userCTRL
+
+*all view files shoud start with a small letter
+
+*all model files shoud start with a capital letter
+
+*all variables and methods should start with a small letter
+
+*all routings will follow the underscore terminology
+ex: /main_page
+
+*all exported database schemas should start with capital letter
+ex: 
+var Portfolio = mongoose.model("portfolio", portfolioSchema);
+module.exports = Portfolio;
+
+*for database namings:
+Singular names for single variables. ex: age
+Plural names for arrays. ex: offeredActivities
+
+

@@ -1,0 +1,42 @@
+<div class="contaniter" ng-show="$ctrl.show()">
+      <h1 class="kbd">
+        Choose your interests..
+      </h1>
+
+
+      <div class="container" style="display:table;">
+        <div style="display:table-cell;width:33%;">
+
+        <div ng-repeat="interest1 in $ctrl.interestEnums1" style="display:table-row;" >
+            <span >
+              <label class="checkbox-inline"><input type="checkbox" ng-model='$ctrl.vals1[$ctrl.interestEnums1.indexOf(interest1)]'><h4>{{interest1}}</h4></label>
+            </span>
+        </div>
+
+      </div> <div style="display:table-cell;width:33%;">
+        <div ng-repeat="interest2 in $ctrl.interestEnums2" style="display:table-row;" >
+            <span >
+              <label class="checkbox-inline"><input type="checkbox" ng-model='$ctrl.vals2[$ctrl.interestEnums2.indexOf(interest2)]' ><h4>{{interest2}}</h4></label>
+            </span>
+        </div>
+
+      </div> <div style="display:table-cell;width:33%;">
+        <div ng-repeat="interest3 in $ctrl.interestEnums3"  style="display:table-row;" >
+            <span >
+              <label class="checkbox-inline"><input type="checkbox" ng-model='$ctrl.vals3[$ctrl.interestEnums3.indexOf(interest3)]' ><h4>{{interest3}}</h4></label>
+            </span>
+        </div>
+
+      </div>
+
+      </div>
+
+
+      <br><br>
+          <button class="btn btn-success btn-lg" ng-click="$ctrl.submitInterests()">Save</button>
+
+
+          <div class="">
+            <h3>{{$ctrl.errs}}</h3>
+          </div>
+</div>

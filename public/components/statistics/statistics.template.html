@@ -1,0 +1,79 @@
+
+<section id="counter" class="counter">
+  <div class="main_counter_area">
+    <div class="overlay p-y-3">
+      <div class="container">
+        <div class="row">
+          <div class="main_counter_content text-center white-text wow fadeInUp">
+            <div class="col-md-3">
+              <div class="single_counter p-y-2 m-t-1">
+                <i class="fa fa-heart m-b-1"></i>
+                <h2 class="statistic-counter">{{$ctrl.activityCount}}</h2>
+                <p>Awesome Activities in Egypt</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="single_counter p-y-2 m-t-1">
+                <i class="fa fa-check m-b-1"></i>
+                <h2 class="statistic-counter">{{$ctrl.SPcount}}</h2>
+                <p>Enthusiastic Service Providers</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="single_counter p-y-2 m-t-1">
+                <i class="fa fa-refresh m-b-1"></i>
+                <h2 class="statistic-counter">{{$ctrl.BookingsCount}}</h2>
+                <p>Bookings Confirmed</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="single_counter p-y-2 m-t-1">
+                <i class="fa fa-beer m-b-1"></i>
+                <h2 class="statistic-counter">480</h2>
+                <p>Pizzas Ordered</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- End of counter Section -->
+
+
+
+<style>
+
+.p-y-2 {
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+.p-y-3 {
+  padding-top: 45px;
+  padding-bottom: 45px;
+}
+.m-b-1 {
+  margin-bottom: 18px;
+}
+.m-t-1 {
+  margin-top: 18px;
+}
+
+/*==========================================================
+counter section style
+============================================================*/
+
+.main_counter_area{
+  background: url(https://images.pexels.com/photos/196288/pexels-photo-196288.jpeg?w=940&h=650&auto=compress&cs=tinysrgb) no-repeat top center;
+  background-size: cover;
+  overflow: hidden;
+}
+.main_counter_area .main_counter_content .single_counter{
+  background: rgba(236, 72, 72, 0.5);
+  color: #fff;
+}
+.main_counter_area .main_counter_content .single_counter i{
+  font-size:36px;
+}
+
+</style>

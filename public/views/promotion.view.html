@@ -1,0 +1,10 @@
+ <br>
+ <br>
+ <br>
+ <br>
+ <h1>Choose Client to promote</h1>
+  <div >
+    <select ng-model="$parent.selectedClient" ng-options="item._id as item.firstName for item in BDClients">
+      <option value="">Select a client</option>
+    </select>
+  </div>

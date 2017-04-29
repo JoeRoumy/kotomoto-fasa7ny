@@ -1,0 +1,245 @@
+<!-- <div class="container" style="
+display: inline-block;width: 83%;"> -->
+    <!-- <div class="row"> -->
+        <div class="col-md-4">
+            <div class="product-item hvr-rectangle-out">
+              <div class="pi-img-wrapper">
+                <!-- <img src="img/works_slider1.jpg"style="height: 300px;" class="img-responsive" > -->
+                <center><img src="img/{{$ctrl.data.media[0]}}"style="height: 300px;" class="img-responsive" ></center>
+                <div>
+                  <a ng-click="openBookingPage($ctrl.data._id)" class="btn">Book Now</a>
+                  <a ng-click="showSendGiftModal()" class="btn">Send a Gift  <i class="fa fa-gift" aria-hidden="true"></i></a>
+                </div>
+              </div>
+            <center>
+              <!-- <div ng-repeat="i  in [1, 2, 3, 4,5]" style="display:inline-block; padding-top:5px;padding-left:10px;font-size: xx-large;">
+                <span class="glyphicon glyphicon-star"  ng-if="i<=$ctrl.data.rating"></span>
+                <span class="glyphicon glyphicon-star-empty"  ng-if="i>$ctrl.data.rating"></span>
+            </div> -->
+            <!-- label-text="$ctrl.data.rating" label-position="'right'" -->
+            <star-rating-comp rating="$ctrl.data.rating"   show-half-stars="true" show-hover-stars="false" read-only="true" size="'large'"></star-rating-comp>
+          </center>
+              <center><h2 style="margin-top: 5px;font-weight: 700;">{{$ctrl.data.title}}</h2></center>
+              <p style="overflow:hidden; text-overflow: ellipsis;height:60px">{{$ctrl.data.theme}}</p>
+              <div class="pi-price" ng-if="$ctrl.data.newPrice == undefined"> EGP {{$ctrl.data.prices[0].price}}</div>
+              <div ng-if="$ctrl.data.newPrice != undefined">
+                <div class="pi-price" style="
+                width: 100%;
+                display: flex;
+                padding-left: 34px;
+                font-weight: bold;
+                font-size: x-large;">{{$ctrl.data.newPrice}}</div>
+                <div class="pi-price slashed"> EGP {{$ctrl.data.prices[0].price}}</div>
+              </div>
+              <center><div class="social_link" style="
+               display: inline-block;
+               margin: auto;
+               width: 55% !important;
+               padding-left: 10px;
+               padding-right: 10px">
+              <ul class="sociallink_nav">
+                <li><a href="https://www.facebook.com/sharer/sharer.php?u=www.localhost:8080/activity/{{$ctrl.data._id}}" target="_blank" style="padding: 4px 11px;" uib-tooltip="share activity on facebook"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/intent/tweet?text=check out this amazing activity here at fasa7ny www.localhost:8080/activity/{{$ctrl.data._id}} &url=www.localhost:8080/activity/{{$ctrl.data._id}}" uib-tooltip="share activity on twitter" target="_blank" style="padding: 4px 8px;"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://plus.google.com/share?url=www.localhost:8080/activity/{{$ctrl.data._id}}" uib-tooltip="share activity on google plus" target="_blank" style="padding: 4px 8px;"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="" ng-click="addToWishList($ctrl.data._id)" style="padding: 4px 6px;background-color:#6ee881"  uib-tooltip="add to wishlist" ><img src="https://d30y9cdsu7xlg0.cloudfront.net/png/101501-200.png" style="width: 21px;"></img> </a></li>
+              </ul>
+            </div></center>
+            <a ng-click="openActivity($ctrl.data._id)" class="btn add2cart">More Info?</a>
+              <!-- <a href="/#/activity/{{a._id}}" class="btn add2cart">More Info?</a> -->
+              <div ng-if="$ctrl.data.isOffer && $ctrl.data.newPrice != undefined" class="sticker sticker-new"></div>
+            </div>
+        </div>
+    <!-- </div> -->
+<!-- </div> -->
+
+<!-- send gift modal -->
+<script type="text/ng-template" id="sendGiftModal.html">
+    <div class="modal-header">
+      <h3 class="modal-title">Send a gift for your beloved ones ! <i class="fa fa-gift" aria-hidden="true"></i></h3>
+    </div>
+    <form>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="usr">Send gift to:</label>
+          <input type="text" class="form-control" ng-model="selectedUsername" placeholder="Username"
+          uib-typeahead="username for username in usernames | filter:$viewValue | limitTo:8">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" ng-if="usernames | contains:selectedUsername" ng-click="ok()" style="margin-bottom:0px">Send Gift <i class="fa fa-gift" aria-hidden="true"></i></button>
+        <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+      </div>
+    </form>
+</script>
+<style>
+.modal{
+  z-index: 9999999 !important;
+  display: block;
+  background-color: rgba(0,0,0,0.6);
+}
+.modal-dialog{
+  padding-top: 100px;
+}
+</style>
+<!-- end send gift modal -->
+
+<!-- type ahead html template file-->
+<script type="text/ng-template" id="columnTwo.html">
+  <table class="">
+    <tr>
+      <td>
+        <div ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)">
+          <a>{{ match.model.text }}</a>
+        </div>
+      </td>
+    </tr>
+  </table>
+</script>
+<!-- end type ahead html template file-->
+
+<style>
+/* Rectangle Out */
+.hvr-rectangle-out {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  background: #e1e1e1;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.hvr-rectangle-out:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #2098D1;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-rectangle-out:hover, .hvr-rectangle-out:focus, .hvr-rectangle-out:active {
+  color: white;
+}
+.hvr-rectangle-out:hover:before, .hvr-rectangle-out:focus:before, .hvr-rectangle-out:active:before {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+</style>
+
+<style>
+.slashed {
+    display:inline-block;
+    background:url(http://www.pd4pic.com/images800_/flat-line-diagonal-theme-action-icon.png);
+    background-size:100% 100%;
+}
+.product-item {
+    padding: 15px;
+    background: #fff;
+    margin-top: 20px;
+    position: relative;
+}
+.product-item:hover {
+    box-shadow: 5px 5px 20px grey;*/
+}
+.product-item:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    font-size: 0;
+    line-height:0;
+}
+.sticker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 63px;
+    height: 63px;
+}
+.sticker-new {
+    background: url(http://dn.slp.tune-up.com/icdn/utilities/sem/eb/images/sticker_action.png) no-repeat;
+    background-size: 100px;
+    height: 100px;
+    width: 100px;
+    left: auto;
+    right: 0;
+}
+.pi-img-wrapper {
+    position: relative;
+}
+.pi-img-wrapper div {
+    background: rgba(0,0,0,0.3);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.product-item:hover>.pi-img-wrapper>div {
+    display: block;
+}
+.pi-img-wrapper div .btn {
+    padding: 3px 10px;
+    color: #fff;
+    border: 1px #fff solid;
+    margin: -13px 5px 0;
+    background: transparent;
+    text-transform: uppercase;
+    position: relative;
+    top: 50%;
+    line-height: 1.4;
+    font-size: 12px;
+}
+.product-item .btn:hover {
+    background: #e84d1c;
+    border-color: #c8c8c8;
+}
+
+.product-item h3 {
+    font-size: 14px;
+    font-weight: 300;
+    padding-bottom: 4px;
+    text-transform: uppercase;
+}
+.product-item h3 a {
+    color: #3e4d5c;
+}
+.product-item h3 a:hover {
+    color: #E02222;
+}
+.pi-price {
+    color: #e84d1c;
+    font-size: 18px;
+    float: left;
+    padding-top: 1px;
+}
+.product-item .add2cart {
+    float: right;
+    color: #d3523c;
+    border: 1px #ededed solid;
+    padding: 3px 6px;
+    text-transform: uppercase;
+}
+        .product-item .add2cart:hover {
+            color: #fff;
+            background: #e84d1c;
+            border-color: #e84d1c;
+        }
+</style>

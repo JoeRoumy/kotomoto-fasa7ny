@@ -1,0 +1,36 @@
+<div>
+    <div class="col-sm-1">
+      <div class="thumbnail">
+        <img ng-if="$ctrl.data.userId.profilePicture== undefined" class="img-responsive user-photo" src="https://www.campsitechatter.com/images/profile/default-male-250.png">
+        <img ng-if="$ctrl.data.userId.profilePicture=='-1' && $ctrl.data.userId.gender==true" class="img-responsive user-photo" src="https://www.campsitechatter.com/images/profile/default-male-250.png">
+        <img ng-if="$ctrl.data.userId.profilePicture=='-1' && $ctrl.data.userId.gender==false" class="img-responsive user-photo" src="http://www.baylogictech.com/images/default-female-250.jpg">
+        <img ng-if="$ctrl.data.userId.profilePicture!='-1'" class="img-responsive user-photo" ng-src="img/{{$ctrl.data.userId.profilePicture}}">
+      </div><!-- /thumbnail -->
+    </div><!-- /col-sm-1 -->
+
+    <div class="col-sm-5">
+      <div class="panel panel-default">
+        <div class="panel-heading" style="padding-bottom:0px">
+          <strong>{{$ctrl.data.userId.firstName}}</strong> reviewed <a href="/#/activity/{{$ctrl.data.activityId._id}}" class="navbar-link">{{$ctrl.data.activityId.title}}</a>
+          <style>
+          a{
+            color: #a94442;
+          }
+          a:hover {
+
+            text-decoration: underline;
+          }
+          </style>
+          <br>
+          <div ng-repeat="i  in [1, 2, 3, 4,5]" style="display:inline-block; font-size:large;">
+              <span class="glyphicon glyphicon-star"  ng-if="i<=$ctrl.data.rate"></span>
+              <span class="glyphicon glyphicon-star-empty"  ng-if="i>$ctrl.data.rate"></span>
+          </div>
+          <span class="text-muted pull-right"><i class="fa fa-clock-o" aria-hidden="true"></i> <time-ago from-time='{{$ctrl.data.time}}'></time-ago></span>
+        </div>
+        <div class="panel-body">
+          {{$ctrl.data.review}}
+        </div><!-- /panel-body -->
+      </div><!-- /panel panel-default -->
+    </div><!-- /col-sm-5 -->
+</div><!-- /container -->

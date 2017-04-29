@@ -1,0 +1,364 @@
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
+<script src="js/checkout.js"></script>
+<!-- <script type="text/javascript" src="https://js.stripe.com/v2/">
+
+$(function(){
+
+  Stripe.setPublishableKey('pk_test_T6W1tIPwdvG4pxxVnYVWeDFt');
+
+}); -->
+
+</script>
+<div id="all" class="ui container" style="padding-top:100px">
+	<!-- steps -->
+	<div class="ui fluid steps">
+	  <div class="{{disabled[0]}} {{active[0]}} {{completed[0]}} step">
+	    <i class="calendar icon"></i>
+	    <div class="content">
+	      <div class="title">Time</div>
+	      <div class="description">Choose your preferred timing</div>
+	    </div>
+	  </div>
+	  <div class="{{disabled[1]}} {{active[1]}} {{completed[1]}} step">
+	    <i class="users icon"></i>
+	    <div class="content">
+	      <div class="title">Plan</div>
+	      <div class="description">Choose a plan for one person or groups</div>
+	    </div>
+	  </div>
+	  <div class="{{disabled[2]}} {{active[2]}} {{completed[2]}} step">
+	    <i class="info icon"></i>
+	    <div class="content">
+	      <div class="title">Confirm Order</div>
+				<div class="description">Confirm your order and pay</div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- step1 -->
+	<div ng-if="active[0].length != 0" class="well well-sm">
+		<center><div uib-datepicker ng-model="activityDate"  datepicker-options="dateOptions"></div></center>
+		<div ng-if="activityDate">
+			<h2 >Timings available on: {{activityDate | date:'fullDate'}}</h2>
+			<div ng-if="activityDate.getDay()==0">
+				<form>
+					<div  ng-if="timing.day=='Sunday'" class="radio" ng-repeat="timing in activity.timings">
+						<label><input ng-model="time"  ng-change="chosenTime(timing,activityDate)" name="time" type="radio" ng-value="timing">from {{Math.floor(timing.startTime/60)}}:{{timing.startTime%60}} to {{Math.floor((timing.startTime+activity.durationInMinutes)/60)}}:{{(timing.startTime+activity.durationInMinutes)%60}}</label>
+					</div>
+					<button class="btn btn-success"  ng-click="submitTiming()">Choose</button>
+				</form>
+			</div>
+			<div ng-if="activityDate.getDay()==1">
+				<form>
+					<div  ng-if="timing.day=='Monday'" class="radio" ng-repeat="timing in activity.timings">
+						<label><input ng-model="time" ng-change="chosenTime(timing,activityDate)" type="radio" name="timing" ng-value="timing">from {{Math.floor(timing.startTime/60)}}:{{timing.startTime%60}} to {{Math.floor((timing.startTime+activity.durationInMinutes)/60)}}:{{(timing.startTime+activity.durationInMinutes)%60}}</label>
+					</div>
+					<button class="btn btn-success"  ng-click="submitTiming()">Choose</button>
+				</form>
+			</div>
+			<div ng-if="activityDate.getDay()==2">
+				<form>
+				<div  ng-if="timing.day=='Tuesday'" class="radio" ng-repeat="timing in activity.timings">
+					<label><input ng-model="time" type="radio" ng-change="chosenTime(timing,activityDate)" name="timing" ng-value="timing">from {{Math.floor(timing.startTime/60)}}:{{timing.startTime%60}} to {{Math.floor((timing.startTime+activity.durationInMinutes)/60)}}:{{(timing.startTime+activity.durationInMinutes)%60}}</label>
+				</div>
+				<button class="btn btn-success"  ng-click="submitTiming()">Choose</button>
+			</form>
+			</div>
+			<div ng-if="activityDate.getDay()==3">
+				<form>
+					<div  ng-if="timing.day=='Wednesday'" class="radio" ng-repeat="timing in activity.timings">
+						<label><input ng-model="time" type="radio" ng-change="chosenTime(timing,activityDate)" name="timing" ng-value="timing">from {{Math.floor(timing.startTime/60)}}:{{timing.startTime%60}} to {{Math.floor((timing.startTime+activity.durationInMinutes)/60)}}:{{(timing.startTime+activity.durationInMinutes)%60}}</label>
+					</div>
+					<button class="btn btn-success"  ng-click="submitTiming()">Choose</button>
+				</form>
+			</div>
+			<div ng-if="activityDate.getDay()==4">
+				<form>
+				<div  ng-if="timing.day=='Thursday'" class="radio" ng-repeat="timing in activity.timings">
+					<label><input ng-model="time" ng-change="chosenTime(timing,activityDate)" type="radio" name="timing" ng-value="timing">from {{Math.floor(timing.startTime/60)}}:{{timing.startTime%60}} to {{Math.floor((timing.startTime+activity.durationInMinutes)/60)}}:{{(timing.startTime+activity.durationInMinutes)%60}}</label>
+				</div>
+				<button class="btn btn-success"  ng-click="submitTiming()">Choose</button>
+			</form>
+			</div>
+			<div ng-if="activityDate.getDay()==5">
+				<form>
+				<div  ng-if="timing.day=='Friday'" class="radio" ng-repeat="timing in activity.timings">
+					<label><input ng-model="time" ng-change="chosenTime(timing,activityDate)"type="radio" name="timing" ng-value="timing">from {{Math.floor(timing.startTime/60)}}:{{timing.startTime%60}} to {{Math.floor((timing.startTime+activity.durationInMinutes)/60)}}:{{(timing.startTime+activity.durationInMinutes)%60}}</label>
+				</div>
+				<button class="btn btn-success" class="btn btn-success"  ng-click="submitTiming()">Choose</button>
+			</form>
+			</div>
+			<div ng-if="activityDate.getDay()==6">
+				<form>
+				<div  ng-if="timing.day=='Saturday'" class="radio" ng-repeat="timing in activity.timings">
+					<label><input ng-model="time" ng-change="chosenTime(timing,activityDate)" type="radio" name="timing" ng-value="timing">from {{Math.floor(timing.startTime/60)}}:{{timing.startTime%60}} to {{Math.floor((timing.startTime+activity.durationInMinutes)/60)}}:{{(timing.startTime+activity.durationInMinutes)%60}}</label>
+				</div>
+				<button class="btn btn-success"  ng-click="submitTiming()">Choose</button>
+			</form>
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+	<style>
+  .full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+  .partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }
+	.uib-day button, .uib-month button, .uib-year button {
+		background-color: limegreen;
+	}
+	.btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default{
+		background-color: #31b0d5;
+border-color: #269abc;
+	}
+	table{
+		width: 700px;
+    height: 300px;
+	}
+	.uib-daypicker.ng-scope:focus {outline:0 !important;}
+</style>
+	<!-- step2 -->
+	<div ng-if="active[1].length != 0">
+		<div class="pricearea">
+			<center>
+				<ul class="price_nav wow bounceIn">
+					<li ng-repeat="plan in activity.prices | orderBy:'numberOfClients'">
+						<h2 class="price_heading">{{planTitles[$index]}}</h2>
+						<ul class="pfeatured_nav">
+							<li>For <strong>{{plan.numberOfClients}}</strong> person{{plan.numberOfClients==1?'':'s'}} </li>
+						</ul>
+						<h3>EGP {{plan.price}}</h3>
+						<p>Per Person</p>
+						<button class="get_button" ng-click="submitPlan(plan,planTitles[$index])">Select this Plan</button>
+					</li>
+				</ul>
+			</center>
+		</div>
+	</div>
+
+	<!-- step3 -->
+	<div class="invoice" ng-if="active[2].length != 0">
+
+		<header>
+			<h1>Invoice</h1>
+			<address>
+				<p>Fasa7nyl</p>
+				<p>Egypt</p>
+			</address>
+			<span><img alt="" src="img/ag1.jpg"></span>
+		</header>
+		<article>
+			<h1>Recipient</h1>
+			<address>
+				<p>User first name<br>userneame</p>
+			</address>
+			<table class="meta">
+				<!-- <tr>
+					<th><span contenteditable>Invoice #</span></th>
+					<td><span contenteditable>101138</span></td>
+				</tr> -->
+				<tr>
+					<th><span>Date</span></th>
+					<td><span>{{today| date:'fullDate'}}</span></td>
+				</tr>
+				<tr>
+					<th><span>Amount Due</span></th>
+					<td><span id="prefix">EGP</span><span> {{plan.numberOfClients*plan.price}}</span></td>
+				</tr>
+			</table>
+			<table class="inventory">
+				<thead>
+					<tr>
+						<th><span >Activity</span></th>
+						<th><span >Time</span></th>
+						<th><span >Plan</span></th>
+						<th><span >Price Per Person</span></th>
+						<th><span >Number Of persons</span></th>
+						<th><span >Price for All persons</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><a class="cut">-</a><span >{{activity.title}}</span></td>
+						<td><span ></span>{{activityDate | date:'fullDate'}}</td>
+						<td><span >{{plan.planTitle}}</span></td>
+						<td><span data-prefix>EGP</span><span >{{plan.price}}</span></td>
+						<td><span >{{plan.numberOfClients}}</span></td>
+						<td><span data-prefix>EGP</span><span>{{plan.numberOfClients*plan.price}}</span></td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="balance">
+				<tr>
+					<span> Checkout </span>
+					<br><br>
+					<span>
+						<!-- <form class="form" ng-submit="processPayement()">
+						  <script
+						    src="https://checkout.stripe.com/checkout.js"
+						    class="stripe-button"
+						    data-key = "pk_test_T6W1tIPwdvG4pxxVnYVWeDFt"
+						    data-amount = {{plan.numberOfClients*plan.price*100}}
+						    data-name = {{activity.title}}
+						    data-description = "Activity payment"
+						    data-locale = "auto"
+						    data-currency = "egp"
+						    >
+						    </script>
+						    <input type="hidden" name="chargeAmount" value={{plan.numberOfClients*plan.price*100}}>
+						</form> -->
+
+										<button class="btn btn-stripe" id="customButton">Pay now</button>
+										<script>
+                    var $element = $('#all');
+                    var scp = angular.element($element).scope();
+										var handler = StripeCheckout.configure({
+										  key: 'pk_test_T6W1tIPwdvG4pxxVnYVWeDFt',
+										  image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+										  locale: 'auto',
+										  token: function(token) {
+										    // You can access the token ID with `token.id`.
+										    // Get the token ID to your server-side code for use.
+                        console.log({"yes":token});
+												scp.processPayement(token);
+										  }
+										});
+
+										document.getElementById('customButton').addEventListener('click', function(e) {
+                      console.log("yoyoyoo");
+										  // Open Checkout with further options:
+										  handler.open({
+										    name: scp.activity.title,
+										    description: "Activity payment",
+										    amount: scp.plan.numberOfClients*scp.plan.price*100
+										  });
+										  e.preventDefault();
+										});
+
+										// Close Checkout on page navigation:
+										window.addEventListener('popstate', function() {
+										  handler.close();
+										});
+										</script>
+					</span>
+					<th><span >Total</span></th>
+					<td><span data-prefix>EGP</span><span>{{plan.numberOfClients*plan.price}}</span></td>
+				</tr>
+			</table>
+		</article>
+		<aside>
+			<h1><span >Additional Notes</span></h1>
+			<div >
+				<p>You can cancel this booking until {{activityDate-1| date:'fullDate'}} (1 day before the activity).</p>
+				<p>You can print this invoice in case of any emergency.</p>
+			</div>
+		</aside>
+
+	</div>
+
+</div>
+<style>
+/* reset */
+
+.invoice *
+{
+	border: 0;
+	box-sizing: content-box;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	vertical-align: top;
+}
+
+
+
+/* heading */
+
+.invoice h1 { font: bold 100% sans-serif; letter-spacing: 0.5em; text-align: center; text-transform: uppercase; }
+
+/* table */
+
+.invoice table { font-size: 75%; table-layout: fixed; width: 100%;height: auto }
+.invoice table { border-collapse: separate; border-spacing: 2px; }
+.invoice th,.invoice td { border-width: 1px; padding: 0.5em; position: relative; text-align: left;height: 30px; }
+.invoice th,.invoice td { border-radius: 0.25em; border-style: solid; height: 30px; }
+.invoice th { background: #EEE; border-color: #BBB; }
+.invoice td { border-color: #DDD; }
+
+/* page */
+
+.invoice html { font: 16px/1 'Open Sans', sans-serif; overflow: auto; padding: 0.5in; }
+.invoice html { background: #999; cursor: default; }
+
+.invoice { box-sizing: border-box; height: 11in; margin: 0 auto; overflow: hidden; padding: 0.5in; width: 8.5in; }
+.invoice { background: #FFF; border-radius: 1px; box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5); }
+
+/* header */
+
+.invoice header { margin: 0 0 3em; }
+.invoice header:after { clear: both; content: ""; display: table; }
+
+.invoice header h1 { background: #000; border-radius: 0.25em; color: #FFF; margin: 0 0 1em; padding: 0.5em 0; }
+.invoice header address { float: left; font-size: 75%; font-style: normal; line-height: 1.25; margin: 0 1em 1em 0; }
+.invoice header address p { margin: 0 0 0.25em; }
+.invoice header span, header img { display: block; float: right; }
+.invoice header span { margin: 0 0 1em 1em; max-height: 25%; max-width: 60%; position: relative; }
+.invoice header img { max-height: 100%; max-width: 100%; }
+.invoice header input { cursor: pointer; -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; }
+
+/* article */
+
+.invoice article,.invoice  article address,.invoice  table.meta,.invoice  table.inventory { margin: 0 0 3em; }
+.invoice article:after { clear: both; content: ""; display: table; }
+.invoice article h1 { clip: rect(0 0 0 0); position: absolute; }
+
+.invoice article address { float: left; font-size: 125%; font-weight: bold; }
+
+/* table meta & balance */
+
+.invoice table.meta,.invoice  table.balance { float: right; width: 36%; }
+.invoice table.meta:after,.invoice  table.balance:after { clear: both; content: ""; display: table; }
+
+/* table meta */
+
+.invoice table.meta th { width: 40%; }
+.invoice table.meta td { width: 60%; }
+
+/* table items */
+
+.invoice table.inventory { clear: both; width: 100%; }
+.invoice table.inventory th { font-weight: bold; text-align: center; }
+
+.invoice table.inventory td:nth-child(1) { width: 26%; }
+.invoice table.inventory td:nth-child(2) { width: 38%; }
+.invoice table.inventory td:nth-child(3) { text-align: center; width: 12%; }
+.invoice table.inventory td:nth-child(4) { text-align: center; width: 12%; }
+.invoice table.inventory td:nth-child(5) { text-align: center; width: 12%; }
+
+/* table balance */
+
+.invoice table.balance th, table.balance td { width: 50%; }
+.invoice table.balance td { text-align: right; }
+
+/* aside */
+
+.invoice aside h1 { border: none; border-width: 0 0 1px; margin: 0 0 1em; }
+.invoice aside h1 { border-color: #999; border-bottom-style: solid; }
+
+</style>

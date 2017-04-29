@@ -1,0 +1,274 @@
+{
+	"variables": [],
+	"info": {
+		"name": "fasa7ny",
+		"_postman_id": "be5ef4aa-c0c6-f673-5b4e-beebeaf264fd",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/add_activity",
+			"request": {
+				"url": "localhost:8080/add_activity",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"title\": \"Escape room submarine\",\n    \"type\": \"adventure\",\n    \"durationInMinutes\": \"60\",\n    \"minAge\": \"16\",\n    \"maxAge\": \"-1\",\n    \"minClientNumber\": \"5\",\n    \"maxClientNumber\": \"10\",\n    \"rating\": \"3.8\",\n    \"ratingCount\": \"38\",\n    \"serviceProviderId\": \"5465464654\",\n    \"location\": \"BreakOut Egypt, B311, 90th Street, New Cairo, Cairo, Egypt, 11853\",\n    \"theme\": \"try to get out of the room before 60 minutes\",\n    \"prices\":[{\"numberOfClients\":\"1\",\"price\":\"120\"},{\"numberOfClients\":\"3\",\"price\":\"100\"}],\n    \"timings\":[{\"day\":\"saturday\",\"startTime\":\"720\"},{\"day\":\"saturday\",\"startTime\":\"1080\"},{\"day\":\"sunday\",\"startTime\":\"720\"},{\"day\":\"sunday\",\"startTime\":\"1080\"},{\"day\":\"monday\",\"startTime\":\"720\"},{\"day\":\"monday\",\"startTime\":\"1080\"},{\"day\":\"tuesday\",\"startTime\":\"720\"},{\"day\":\"tuesday\",\"startTime\":\"1080\"}]\n  }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/update_activity",
+			"request": {
+				"url": "localhost:8080/update_activity",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n\t\"activityID\":\"58e0266997620948b2ba319a\",\n    \"title\": \"Escape room submarine\",\n    \"type\": \"adventure\",\n    \"durationInMinutes\": \"60\",\n    \"minAge\": \"16\",\n    \"maxAge\": \"-1\",\n    \"minClientNumber\": \"5\",\n    \"maxClientNumber\": \"10\",\n    \"rating\": \"3.8\",\n    \"ratingCount\": \"38\",\n    \"serviceProviderId\": \"5465464654\",\n    \"location\": \"BreakOut Egypt, B311, 90th Street, New Cairo, Cairo, Egypt, 11853\",\n    \"theme\": \"try to get out of the room before 60 minutes\",\n    \"prices\":[{\"numberOfClients\":\"1\",\"price\":\"120\"},{\"numberOfClients\":\"3\",\"price\":\"100\"}],\n    \"timings\":[{\"day\":\"saturday\",\"startTime\":\"720\"},{\"day\":\"saturday\",\"startTime\":\"1080\"},{\"day\":\"sunday\",\"startTime\":\"720\"},{\"day\":\"sunday\",\"startTime\":\"1080\"},{\"day\":\"monday\",\"startTime\":\"720\"},{\"day\":\"monday\",\"startTime\":\"1080\"},{\"day\":\"tuesday\",\"startTime\":\"720\"},{\"day\":\"tuesday\",\"startTime\":\"1080\"}]\n  }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/delete_activity",
+			"request": {
+				"url": "localhost:8080/delete_activity",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "activityID",
+							"value": "58e0266997620948b2ba319a",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"enabled": false
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/reschedule_activity",
+			"request": {
+				"url": "localhost:8080/reschedule_activity",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n\t\"activityID\":\"58e029e8a19f474a6cafaf6f\",\n    \"durationInMinutes\": \"60\",\n    \"timings\":[{\"day\":\"friday\",\"startTime\":\"720\"},{\"day\":\"saturday\",\"startTime\":\"1080\"},{\"day\":\"sunday\",\"startTime\":\"720\"},{\"day\":\"sunday\",\"startTime\":\"1080\"},{\"day\":\"monday\",\"startTime\":\"720\"},{\"day\":\"monday\",\"startTime\":\"1080\"},{\"day\":\"tuesday\",\"startTime\":\"720\"},{\"day\":\"tuesday\",\"startTime\":\"1080\"}]\n  }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/create_sp_acc",
+			"request": {
+				"url": "localhost:8080/create_sp_acc",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "userName",
+							"value": "breakout",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "email",
+							"value": "breakout@gmail.com",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/create_sp",
+			"request": {
+				"url": "localhost:8080/create_sp",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"BreakOut Egypt\",\n\t\"serviceProviderAccountId\": \"58e02cc078d68f4bd198497c\",\n\t\"description\": \"BreakOut™ provides a Real Room Escape & Kidnapping Experience. To put it simply, a group of people is locked inside one of our themed rooms, and the group members need to use their minds to escape through solving puzzles, riddles and finding clues in only 1 hour. Yes, it’s a real life game.\",\n\t\"legalProof\": \"a legal proof\",\n\t\"entertainmentType\": [\"adventure\",\"maze\"],\n\t\"activities\": [],\n\t\"branches\": [\"masr el gedida\"],\n\t\"contactMobile\":[\"01225698645\"]\n\t\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/sp_login",
+			"request": {
+				"url": "localhost:8080/sp_login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "userName",
+							"value": "breakout",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/add_offer",
+			"request": {
+				"url": "localhost:8080/add_offer",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\":\"Easter's offer\",\n\t\"description\": \"get 50% discount offer for Easter\",\n\t\"discount\":\"0.5\",\n\t\"deadline\":\"2017-04-20T00:00:00.000Z\",\n\t\"activities\":[\"58e029e8a19f474a6cafaf6f\"]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/delete_offer",
+			"request": {
+				"url": "localhost:8080/delete_offer",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "offerId",
+							"value": "58e0cb5bd9a1f31316d5ecb5",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/update_offer",
+			"request": {
+				"url": "localhost:8080/update_offer",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"offerId\": \"58e0cf4bc1a17e163bfa62a8\",\n\t\"discount\":\"0.4\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/apply_to_golden",
+			"request": {
+				"url": "localhost:8080/apply_to_golden",
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,90 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+ <button class="btn btn-default" ng-click="applyGoldenSp()">Be a Golden Service provider</button>
+ <button class="btn btn-default" ng-click="viewAnalytics()">view analytics</button>
+
+<div ng-if="topActivity != undefined">
+
+<h1>our analysis</h1>
+<h2 class="price_heading">{{dates}}</h2>
+
+
+
+
+
+<br>
+<br>
+<h2>Our Top Activity</h2>
+<div class="pricearea">
+
+	<div>
+			<center>
+				<ul class="pfeatured_nav">
+					<li >
+						<h2 class="price_heading">{{topActivity.title}}</h2>
+						<h3>ID: {{topActivity._id}}</h3>	
+                        <h3>Type: {{topActivity.type}}</h3>	
+                        <h3>Duration in Minutes: {{topActivity.durationInMinutes}}</h3>	
+                        <h3>Maximum Age: {{topActivity.maxAge}}</h3>	
+                        <h3>Minimum number of clients: {{topActivity.minClientNumber}}</h3>	
+                        <h3>Maximum number of clients: {{topActivity.maxClientNumber}}</h3>	
+                        <h3>Rating: {{topActivity.rating}}</h3>	
+                        <h3>Location: {{topActivity.location}}</h3>	
+                        <h3>Theme: {{topActivity.theme}}</h3>	
+            
+					</li>
+				</ul>
+			</center>
+	</div>
+
+
+
+<h2>Our Top Service Provider</h2>
+
+
+<div>
+			<center>
+				<ul class="pfeatured_nav">
+					<li  >
+						<h2 class="price_heading">{{topSP.title}}</h2>
+                        <h3>ID: {{topSP._id}}</h3>
+                    	<h3>Description: {{topSP.description}}</h3>	
+                        <h3>Type of Entertainment: {{topSP.entertainmentType}}</h3>	
+                        <h3>Main Branch: {{topSP.branches[0]}}</h3>	
+                        <h3>Mobile Number: {{topSP.contactMobile[0]}}</h3>	
+                        <h3>Golden Status: {{topSP.isGolden}}</h3>	
+                        <h3>Rating: {{topSP.rating}}</h3>	
+                    
+					</li>
+				</ul>
+			</center>
+</div>
+
+
+<h2>Our Top User</h2>
+
+
+
+<div>
+			<center>
+				<ul class="pfeatured_nav">
+					<li  >
+						<h2 class="price_heading">{{topU.firstName}}   {{topU.lastName}}</h2>
+                        <h3>ID: {{topU._id}}</h3>
+                    	<h3>User Account ID:: {{topU.userAccountId}}</h3>	
+                        <h3>Privacy: {{topU.privacy}}</h3>	
+                        <h3>birth Date: {{topU.birthDate}}</h3>	
+                        <h3>number Of Logins: {{topU.numberOfLogins}}</h3>	
+                        
+                    
+					</li>
+				</ul>
+			</center>
+</div>
+
+</div>
+
+</div>

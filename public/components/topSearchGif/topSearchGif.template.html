@@ -1,0 +1,212 @@
+
+
+<section style="height:750px;width:100%">
+  <img id="gifs" src="img/gifs/1.gif" style="height:100%;width:100%"/>
+
+
+  <nav class="navbar navbar-default wow fadeInDown" data-wow-duration="3s" data-wow-delay="1s" data-wow-offset="30" role="navigation" style="
+    position: absolute;
+    top: 50%;
+    width: 60%;
+    left: 20%;
+    background-color:rgba(255,255,255,0.85);">
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="col-sm-5" style="width:36%">
+    <h3 style="margin-top: 12px;font-weight: 600;">Start searching for activities! </h3>
+  </div>
+    <div class="col-sm-5" style="width:auto">
+        <form class="navbar-form" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="searchInput" placeholder="Search" name="q">
+            <div class="input-group-btn">
+                <button class="btn btn-default" ng-click="search(searchInput)" style="height: 34px;"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
+    </div>
+
+
+    <div class="dropdown" style="
+    display: block;
+    width: 20%;
+    float: right;
+    margin-right: 30px;
+    ">
+    <a id="dropdown" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="
+    background: none;
+    border: none;
+    font-size: medium;
+    color: #5e5e5e;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    padding-top: 14px;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+">Filter activities by
+    <span class="caret"></span></a>
+    <ul class="dropdown-menu" >
+      <li class="dropdown-submenu">
+        <a href="#" class="test" href="" ng-click="filterChosen('price')"  tabindex="-1">price <i class="fa fa-caret-right pull-right" aria-hidden="true"></i></a>
+        <ul class="dropdown-menu" ng-model="value">
+          <li><a href="" ng-click="valueChosen(100)"   tabindex="-1" >100+</a></li>
+          <li ><a href="" ng-click="valueChosen(200)"    tabindex="-1" >200+</a></li>
+           <li><a  ng-click="valueChosen(400)"  tabindex="-1" >400+</a></li>
+          <li><a href=""   ng-click="valueChosen(800)" tabindex="-1" >800+</a></li>
+           <li><a href=""  ng-click="valueChosen(1600)"  tabindex="-1" >1600+</a></li>
+          <li><a href=""   ng-click="valueChosen(3200)"  tabindex="-1" >3200+</a></li>
+        </ul>
+      </li>
+      <li><a href="#"  ng-click="filterChosen('offer')" tabindex="-1">offer</a></li>
+      <li class="dropdown-submenu">
+        <a class="test" ng-click="filterChosen('theme')" tabindex="-1" href="#">theme <i class="fa fa-caret-right pull-right" aria-hidden="true"></i></a>
+        <ul class="dropdown-menu">
+         <li><a href=""  ng-click="valueChosen('thriller')" tabindex="-1" >thriller</a></li>
+          <li><a href="" ng-click="valueChosen('relaxing')"  tabindex="-1" >relaxing</a></li>
+           <li><a href="" ng-click="valueChosen('horror')" tabindex="-1" >horror</a></li>
+          <li><a href="" ng-click="valueChosen('children')" tabindex="-1" >children</a></li>
+           <li><a href=""  ng-click="valueChosen('clubs')" tabindex="-1" >clubs</a></li>
+          <li><a href="" ng-click="valueChosen('educational')" tabindex="-1" >educational</a></li>
+        </ul>
+      </li>
+      <li class="dropdown-submenu">
+        <a class="test" ng-click="filterChosen('rating')" tabindex="-1" href="#">rating <i class="fa fa-caret-right pull-right" aria-hidden="true"></i></a>
+        <ul class="dropdown-menu">
+         <li><a href="" ng-click="valueChosen('1')" tabindex="-1" >1+</a></li>
+          <li><a href="" ng-click="valueChosen('2')" tabindex="-1" >2+</a></li>
+           <li><a href="" ng-click="valueChosen('3')" tabindex="-1" >3+</a></li>
+          <li><a href=""  ng-click="valueChosen('4')" tabindex="-1" >4+</a></li>
+        </ul>
+      </li>
+      <li class="dropdown-submenu">
+        <a href="#" class="test" tabindex="-1">Day <i class="fa fa-caret-right pull-right" aria-hidden="true"></i></a>
+        <ul class="dropdown-menu" ng-model="day">
+          <li><a href="" ng-click="dayChosen('Friday')">Friday</a></li>
+          <li><a href="" ng-click="dayChosen('Saturday')">Saturday</a></li>
+          <li><a href="" ng-click="dayChosen('Sunday')">Sunday</a></li>
+          <li><a href="" ng-click="dayChosen('Monday')">Monday</a></li>
+          <li ><a href=""ng-click="dayChosen('Tuesday')">Tuesday</a></li>
+          <li><a href="" ng-click="dayChosen('Wednesday')">Wednesday</a></li>
+          <li><a href="" ng-click="dayChosen('Thursday')">Thursday</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+
+
+
+
+
+
+
+  </div><!-- /.navbar-collapse -->
+</nav>
+</section>
+
+<img src="img/logo.png" style="
+opacity: 0.8;
+position: absolute;
+display: block;
+left: 37%;
+top: 62%;
+height: 40%;
+"></img>
+
+
+
+
+<div id="typing" style="
+    position: absolute;
+    display: block;
+    width: 80%;
+    left: 10%;
+    top: 30%;
+    font-size: 30px;
+    color: aliceblue;
+    font-weight: 800;
+    font-family: monospace;
+    line-height: 30px;
+    text-shadow: 2px 2px 5px black;">
+  <div class="typing" style="display:inline-block"></div>
+</div>
+<style>
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+</style>
+
+
+<script type="text/javascript" src="js/typed.js"></script>
+<script>
+	$(function(){
+		$(".typing").typed({
+			strings: ["Ever tired of not finding new things to do..", "Always feel like fun costs a lot..",
+      "You are in the right place..",
+    "Fasa7ny have the new, fun and discounted activities for you and your friends..",
+  ],
+			typeSpeed: 80,
+      loop:true,
+      backDelay: 2500
+		});
+	});
+</script>
+
+<script type = "text/javascript">
+          startTimer();
+          function displayNextImage() {
+              x = (x === images.length - 1) ? 0 : x + 1;
+              if(document.getElementById("gifs")!=null)
+                document.getElementById("gifs").src = images[x];
+          }
+
+          function startTimer() {
+              timer = setInterval(displayNextImage, 3000);
+          }
+
+          var images = [], x = -1;
+          images[0] = "img/gifs/2.gif";
+          images[1] = "img/gifs/3.gif";
+          images[2] = "img/gifs/4.gif";
+          images[3] = "img/gifs/1.gif";
+
+
+          $(document).ready(function(){
+  $('.dropdown-submenu a.test').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+});
+</script>

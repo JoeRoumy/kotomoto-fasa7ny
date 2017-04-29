@@ -1,0 +1,206 @@
+<br>
+<br>
+<br>
+
+<div class="container" style="padding-top:75px">
+<h1><strong>Add Activity<strong></h1>
+<br>
+  <br>
+<div>
+Title of activity:  <input type="text" ng-model="title" name="title">
+<br>
+<br>
+
+Type:  <input type="text" ng-model="type" name="type">
+ <br>
+ <br>
+
+<!--prices-->
+<br>
+<!--timings-->
+<br>
+Duration in minutes: <input type="number" ng-model="durationInMinutes" name="durationInMinutes">
+<br>
+<br>
+
+Minimum client number: <input type="number" ng-model="minClientNumber" name="minClientNumber">
+Maximum Client number:<input type="number" ng-model="maxClientNumber" name="maxClientNumber">
+<br>
+<br>
+
+Minimum age allowed:<input type="number" ng-model="minAge" name="minAge">
+Maximum age allowed:<input type="number" ng-model="maxAge" name="maxAge">
+<br>
+<br>
+
+<!--media-->
+<!--isOffer-->
+<!--location-->
+Theme: <input type="text" ng-model="theme" name="theme">
+<br>
+<br>
+<div id="pricesDiv">
+
+<div class="columns">
+  <ul class="price">
+    <li class="header">Prices (default price)</li>
+    <li>Number Of Clients:<input type="number" name="numberOfClients" id="numberOfClients_0"></li>
+    <li>Price:<input type="number" name="price" id="price_0"></li>
+  </ul>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<script type="text/javascript">
+var i=1;
+function addElement() {
+    var pricesDiv = document.getElementById('pricesDiv');
+
+   var a = '';
+   //for(var i = 1; i <= 3; i++)
+   //{
+
+      a += '<div class="columns">'
+      +'<ul class="price">'+
+      '<li class="header">Prices</li>'
+      +'<li>Number Of Clients:<input type="number" name="numberOfClients" id="numberOfClients_'+i+'"></li>'
+      +'<li>Price:<input type="number" name="price[]" id="price_'+i+'"></li>'
+      +'</ul>'
+      +'</div>';
+
+     //}
+    pricesDiv.innerHTML += a;
+     i++;
+    //  ni.append(ni);
+
+}
+</script>
+
+
+
+      <center><input type="button" id="btnOfficial" class="btn btn-primary" value="Add Another Price category" onclick="addElement();" /></center>
+      <input type="hidden" value="1" id="theValue" />
+
+
+
+      <div id="timingsDiv">
+
+      <div class="columns">
+        <ul class="price">
+          <li class="header">timings</li>
+          <li>Day:<input type="text" name="numberOfClients" id="day_0"></li>
+          <li>time:<input type="number" name="price" id="time_0"></li>
+        </ul>
+      </div>
+
+      </div>
+
+      </div>
+      </div>
+
+      <script type="text/javascript">
+      var j=1;
+      function addtiming() {
+          var timinigsDiv = document.getElementById('timingsDiv');
+
+         var a = '';
+         //for(var i = 1; i <= 3; i++)
+         //{
+
+            a += '<div class="columns">'
+            +'<ul class="price">'+
+            '<li class="header">Timings</li>'
+            +'<li>Day:<input type="text" name="numberOfClients" id="day_'+j+'"></li>'
+            +'<li>time:<input type="number" name="price[]" id="time_'+j+'"></li>'
+            +'</ul>'
+            +'</div>';
+
+           //}
+          timinigsDiv.innerHTML += a;
+           i++;
+          //  ni.append(ni);
+
+      }
+      </script>
+
+
+
+            <center><input type="button" id="btnOfficial" class="btn btn-primary" value="Add Another timing" onclick="addtiming();" /></center>
+            <input type="hidden" value="1" id="theValue" />
+
+
+
+<map draggable="true"> </map>
+
+
+<div>
+  <center><button class="btn btn-success btn-lg" ng-click="addActivity(title,type,durationInMinutes,
+                  minClientNumber,maxClientNumber,minAge,maxAge,theme)">Save</button></center>
+</div>
+
+
+ <br>
+ <br>
+ <br>
+ <br>
+
+ <style>
+ * {
+   box-sizing: border-box;
+ }
+
+ .columns {
+   float: left;
+   width: 33.3%;
+   padding: 8px;
+ }
+
+ .price {
+   list-style-type: none;
+   border: 1px solid #eee;
+   margin: 0;
+   padding: 0;
+   -webkit-transition: 0.3s;
+   transition: 0.3s;
+ }
+
+ .price:hover {
+   box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+ }
+
+ .price .header {
+   background-color: #111;
+   color: white;
+   font-size: 25px;
+ }
+
+ .price li {
+   border-bottom: 1px solid #eee;
+   padding: 20px;
+   text-align: center;
+ }
+
+ .price .grey {
+   background-color: #eee;
+   font-size: 20px;
+ }
+
+ .button {
+   background-color: #4CAF50;
+   border: none;
+   color: white;
+   padding: 10px 25px;
+   text-align: center;
+   text-decoration: none;
+   font-size: 18px;
+ }
+
+ @media only screen and (max-width: 600px) {
+   .columns {
+       width: 100%;
+   }
+ }
+ </style>

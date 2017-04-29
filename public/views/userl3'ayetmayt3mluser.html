@@ -1,0 +1,16 @@
+</div></center>
+    <a ng-click="changePrivacy" class="btn add2cart" >Change Privacy</a>
+    
+ </div>
+
+ <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{$ctrl.privacyLevel==0?"Public" :$ctrl.privacyLevel==1?"unprivate information":"name only"}}<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <!--<li><a href="#" ng-click="changePrivacy()">Any Day..</a></li>-->
+          <li><a href="#" ng-click="changePrivacy(0)">public</a></li>
+          <li><a href="#" ng-click="changePrivacy(1)">unprivate information</a></li>
+          <li><a href="#" ng-click="changePrivacy(2)">name only</a></li>
+        </ul>
+      </li>
+    </ul>

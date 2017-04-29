@@ -1,0 +1,571 @@
+<div class="container" style="padding-top: 56px;     width: 100%;">
+    <div class="row">
+    	<section style="background-color: white;">
+        <div class="wizard">
+					<div class="process" style="padding: 10px;position:fixed;background: white;z-index: 999;">
+
+						<div class="process-row col-md-12">
+							<script>
+								function removeActive(){
+									document.getElementById('accountInfoBtn').classList.remove("active");
+									document.getElementById('accountInfoBtn').classList.remove("active");
+									document.getElementById('personalInfoBtn').classList.remove("active");
+									document.getElementById('profileBtn').classList.remove("active");
+									document.getElementById('completedBtn').classList.remove("active");
+								};
+							</script>
+							<div class="row">
+								<div class="process-step col-md-3">
+									<button type="button" id="accountInfoBtn"
+									onClick="document.getElementById('accountInfo').scrollIntoView();
+									var scrolledY = window.scrollY;
+
+									if(scrolledY){
+										window.scroll(0, scrolledY - 250);
+									}
+
+									removeActive();
+									document.getElementById('accountInfoBtn').addClass('active')" class="btn btn-default btn-circle active">
+										<i class="fa fa-info-circle fa-3x"></i></button>
+										<p>Account Info</p>
+									</div>
+									<div class="process-step col-md-3">
+										<button type="button" id="personalInfoBtn" onClick="document.getElementById('personalInfo').scrollIntoView();
+										var scrolledY = window.scrollY;
+
+										if(scrolledY){
+											window.scroll(0, scrolledY - 250);
+										}
+
+										removeActive();
+										document.getElementById('personalInfoBtn').addClass('active')"  class="btn btn-default btn-circle" >
+											<i class="fa fa-user fa-3x"></i></button>
+											<p>Personal Info</p>
+										</div>
+										<div class="process-step col-md-3">
+											<button type="button" id="profileBtn" onClick="document.getElementById('profile').scrollIntoView();
+											var scrolledY = window.scrollY;
+
+											if(scrolledY){
+												window.scroll(0, scrolledY - 250);
+											}
+
+											removeActive();document.getElementById('profileBtn').addClass('active')"class="btn btn-default btn-circle" >
+												<i class="fa fa-picture-o fa-3x"></i></button>
+												<p>Profile Image</p>
+											</div>
+											<div class="process-step col-md-3">
+												<button type="button" id="completedBtn" onClick="document.getElementById('completed').scrollIntoView();
+												var scrolledY = window.scrollY;
+
+												if(scrolledY){
+													window.scroll(0, scrolledY - 250);
+												}
+
+												removeActive();document.getElementById('completedBtn').addClass('active')" class="btn btn-default btn-circle" >
+													<i class="fa fa-check fa-3x"></i></button>
+													<p>Completed</p>
+												</div>
+											</div>
+							<style>
+							button.btn.btn-default.btn-circle:hover {
+								background-color: aliceblue;
+							}
+							</style>
+
+						</div>
+
+
+
+					</div>
+
+            <form role="form" style="width: 70%;margin: auto;padding-top: 185px;">
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="step1">
+                        <div class="step1">
+													<span style="color:red">*Required Fields</span>
+													<h4 id="accountInfo" class="ui horizontal divider header">
+														<i class="fa fa-id-card-o" aria-hidden="true"></i>
+														Account Info
+													</h4>
+                            <div class="row">
+                            <div class="col-md-6">
+                                <label><span style="color:red">*</span>First Name</label>
+                                <input type="text" class="form-control"ng-model="firstName" placeholder="First Name" ng-required="true">
+                            </div>
+                            <div class="col-md-6">
+                                <label><span style="color:red">*</span>Last Name</label>
+                                <input type="text" class="form-control" ng-model="lastName" placeholder="Last Name" ng-required="true">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><span style="color:red">*</span>Email address</label>
+                                <input type="email" class="form-control" ng-model="email" placeholder="Email" ng-required="true">
+                            </div>
+                            <div class="col-md-6">
+                                <label><span style="color:red">*</span>Username</label>
+                                <input type="text" class="form-control" ng-model="username" placeholder="Username" ng-required="true">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><span style="color:red">*</span>Password</label>
+                                <input type="password" class="form-control" ng-model="password" placeholder="Password" ng-required="true">
+                            </div>
+														<div class="col-md-6">
+                                <label><span style="color:red">*</span>Confirm Password</label>
+                                <input type="password" ng-required="true" class="form-control" placeholder="Confirm Password" >
+                            </div>
+                        </div>
+
+												<div class="clear"></div>
+												<h4 id="personalInfo" class="ui horizontal divider header">
+													<i class="fa fa-user" aria-hidden="true"></i>
+													Personal Info
+												</h4>
+
+												<div class="row">
+													<div class="row">
+														<div class="col-md-4 col-xs-3">
+															<label align="right"><stong>Date of birth</stong></label>
+															<div uib-datepicker ng-model="birthDate" ></div>
+														</div>
+													</div>
+
+												</div>
+
+												<div class="row">
+													<div class="col-md-4 col-xs-3">
+															<label align="right">Mobile Number</label>
+															<input type="Number" class="form-control" ng-model="mobileNumber" placeholder="Mobile Number">
+													</div>
+												</div>
+
+												<div class="row">
+													<div class="col-md-4 col-xs-3">
+															<label align="right">Privacy</label>
+															<select ng-model="privacy">Select Privacy level
+																<option value="_">Select Privacy level</option>
+																<option value="0">Level 1</option>
+																<option value="1">Level 2</option>
+																<option value="2">Level 3</option>
+															</select>
+													</div>
+												</div>
+
+												<div class="row">
+													<div class="row">
+														<div class="col-md-4 col-xs-3">
+																<label align="right"><stong>Gender</stong></label>
+														</div>
+													</div>
+														<div class="col-md-8 col-xs-9">
+																<label class="radio-inline">
+																	<input type="radio" name="inlineRadioOptions" ng-model="gender"  value="true"> Male
+																</label>
+																<label class="radio-inline">
+																	<input type="radio" name="inlineRadioOptions" ng-model="gender"  value="female"> Female
+																</label>
+														</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6">
+															<label>Profession</label>
+															<input type="text" class="form-control" ng-model="profession" placeholder="Profession">
+													</div>
+												</div>
+
+												<div class="row">
+													<label>Interests choice should go there</label>
+												</div>
+
+												<div class="clear"></div>
+												<h4 id="profile" class="ui horizontal divider header">
+													<i class="fa fa-picture-o" aria-hidden="true"></i>
+													Profile Image
+												</h4>
+
+												<div class="row">
+													<div class="col-md-6">
+															<label>Profile Image</label>
+															<input type="file" accept="image/*" class="form-control" ng-model="profilePicture" placeholder="Profile Picture">
+													</div>
+												</div>
+
+												<div class="clear"></div>
+												<h4 id="completed" class="ui horizontal divider header">
+													<i class="fa fa-check" aria-hidden="true"></i>
+													Completed
+												</h4>
+
+                        </div>
+                        <ul class="list-inline">
+													<center>
+                            <li style="padding:10px;"><button type="submit" style="border-radius: 10px;" class="btn btn-lg btn-success" >SignUp</button></li>
+													</center>
+												</ul>
+                    </div>
+
+
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+    </section>
+   </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- Basic signup info -->
+<div ng-controller= "signupController" class="container">
+	<div class="row" style="margin-top:40px;">
+		<div class="col-md-6">
+    	<div class="well well-sm">
+
+      <!-- first step signup -->
+            <div ng-show="isLoggedIn() == false">
+                <div class="col-md-12">
+                    <local-signup></local-signup>
+                </div>
+            </div>
+      <!-- user second step signup -->
+            <div ng-show="isUser() == true" >
+                <div class="col-md-12">
+                    <user-signup ></user-signup>
+                </div>
+            </div>
+      <!-- sp second step signup -->
+            <div ng-show="isUser() == false">
+                <div class="col-md-12">
+                    <sp-signup ></sp-signup>
+                </div>
+            </div>
+        </div>
+
+		</div>
+	</div>
+</div>
+
+
+
+<style>
+.wizard {
+    margin: 20px auto;
+    background: #fff;
+}
+
+    .wizard .nav-tabs {
+        position: relative;
+        margin: 40px auto;
+        margin-bottom: 0;
+        border-bottom-color: #e0e0e0;
+    }
+
+    .wizard > div.wizard-inner {
+        position: relative;
+    }
+
+.connecting-line {
+    height: 2px;
+    background: #e0e0e0;
+    position: absolute;
+    width: 80%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: 1;
+}
+
+.wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+    color: #555555;
+    cursor: default;
+    border: 0;
+    border-bottom-color: transparent;
+}
+
+span.round-tab {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    display: inline-block;
+    border-radius: 100px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    font-size: 25px;
+}
+span.round-tab i{
+    color:#555555;
+}
+.wizard li.active span.round-tab {
+    background: #fff;
+    border: 2px solid #5bc0de;
+
+}
+.wizard li.active span.round-tab i{
+    color: #5bc0de;
+}
+
+span.round-tab:hover {
+    color: #333;
+    border: 2px solid #333;
+}
+
+.wizard .nav-tabs > li {
+    width: 25%;
+}
+
+.wizard li:after {
+    content: " ";
+    position: absolute;
+    left: 46%;
+    opacity: 0;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 5px solid transparent;
+    border-bottom-color: #5bc0de;
+    transition: 0.1s ease-in-out;
+}
+
+.wizard li.active:after {
+    content: " ";
+    position: absolute;
+    left: 46%;
+    opacity: 1;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 10px solid transparent;
+    border-bottom-color: #5bc0de;
+}
+
+.wizard .nav-tabs > li a {
+    width: 70px;
+    height: 70px;
+    margin: 20px auto;
+    border-radius: 100%;
+    padding: 0;
+}
+
+    .wizard .nav-tabs > li a:hover {
+        background: transparent;
+    }
+
+.wizard .tab-pane {
+    position: relative;
+    /*padding-top: 50px;*/
+}
+
+.wizard h3 {
+    margin-top: 0;
+}
+.step1 .row {
+    margin-bottom:10px;
+}
+.step_21 {
+    border :1px solid #eee;
+    border-radius:5px;
+    padding:10px;
+}
+.step33 {
+    border:1px solid #ccc;
+    border-radius:5px;
+    padding-left:10px;
+    margin-bottom:10px;
+}
+.dropselectsec {
+    width: 68%;
+    padding: 6px 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #333;
+    margin-left: 10px;
+    outline: none;
+    font-weight: normal;
+}
+.dropselectsec1 {
+    width: 74%;
+    padding: 6px 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #333;
+    margin-left: 10px;
+    outline: none;
+    font-weight: normal;
+}
+.mar_ned {
+    margin-bottom:10px;
+}
+.wdth {
+    width:25%;
+}
+.birthdrop {
+    padding: 6px 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #333;
+    margin-left: 10px;
+    width: 16%;
+    outline: 0;
+    font-weight: normal;
+}
+
+
+/* according menu */
+#accordion-container {
+    font-size:13px
+}
+.accordion-header {
+    font-size:13px;
+	background:#ebebeb;
+	margin:5px 0 0;
+	padding:7px 20px;
+	cursor:pointer;
+	color:#fff;
+	font-weight:400;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px
+}
+.unselect_img{
+	width:18px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.active-header {
+	-moz-border-radius:5px 5px 0 0;
+	-webkit-border-radius:5px 5px 0 0;
+	border-radius:5px 5px 0 0;
+	background:#F53B27;
+}
+.active-header:after {
+	content:"\f068";
+	font-family:'FontAwesome';
+	float:right;
+	margin:5px;
+	font-weight:400
+}
+.inactive-header {
+	background:#333;
+}
+.inactive-header:after {
+	content:"\f067";
+	font-family:'FontAwesome';
+	float:right;
+	margin:4px 5px;
+	font-weight:400
+}
+.accordion-content {
+	display:none;
+	padding:20px;
+	background:#fff;
+	border:1px solid #ccc;
+	border-top:0;
+	-moz-border-radius:0 0 5px 5px;
+	-webkit-border-radius:0 0 5px 5px;
+	border-radius:0 0 5px 5px
+}
+.accordion-content a{
+	text-decoration:none;
+	color:#333;
+}
+.accordion-content td{
+	border-bottom:1px solid #dcdcdc;
+}
+
+
+
+@media( max-width : 585px ) {
+
+    .wizard {
+        width: 90%;
+        height: auto !important;
+    }
+
+    span.round-tab {
+        font-size: 16px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .wizard .nav-tabs > li a {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .wizard li.active:after {
+        content: " ";
+        position: absolute;
+        left: 35%;
+    }
+}
+</style>
+
+<style>
+
+.stepwizard-step p {
+    margin-top: 10px;
+}
+
+.process-row {
+    display: table-row;
+}
+
+.process {
+
+    width: 100%;
+    position: relative;
+}
+
+.process-step button[disabled] {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+}
+
+.process-row:before {
+    top: 50px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    z-order: 0;
+
+}
+
+.process-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+
+.process-step p {
+    margin-top:10px;
+
+}
+
+.btn-circle {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+</style>

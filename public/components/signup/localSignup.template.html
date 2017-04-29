@@ -1,0 +1,26 @@
+<div  accept-charset="UTF-8">
+    <div style="padding-top: 20px">
+    <div class="">
+       <input type="text" name="userName" ng-model="userName" placeholder="Enter your username..">
+    </div>
+    <br> <br>
+    <div class="">
+      <input type="password" name="password" ng-model="password" placeholder="Enter your password.." >
+    </div>
+    <br><br>
+      <div class="">
+        <input type="email" name="email" ng-model="email" placeholder="Enter your mail..">
+
+      </div>
+<br><br>
+Are you a..
+      <div class="">
+        <input type="radio" name="type" ng-model="type" checked="true" > User </input>
+or a..
+
+        <input type="radio" name="type" ng-model="type" ng-value="1" > SP </input>
+      </div>
+      <br><br>
+        <button class="btn btn-success btn-lg" ng-click="$ctrl.signupStepOne()">Save</button>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div  accept-charset="UTF-8">
+    <div style="padding-top: 20px">
+    <div class="">
+       <input type="text" name="firstName" ng-model="firstName" placeholder="Enter your first name..">
+    </div>
+    <br> <br>
+    <div class="">
+       <input type="text" name="lastName" ng-model="lastName" placeholder="Enter your last name..">
+    </div>
+    <br> <br>
+    <div class="">
+      <input type="number" name="privacy" ng-model="privacy" min="0" max="2" placeholder="Enter your privacy level.." >
+    </div>
+    <br><br>
+      <div class="">
+        <input type="date" name="bdate" ng-model="bdate" >
+
+      </div>
+<br><br>
+Are you a..
+      <div class="">
+        <input type="radio" name="gender" ng-model="type" checked="true" > Male </input>
+or a..
+
+        <input type="radio" name="gender" ng-model="type" ng-value="false" > Female </input>
+      </div>
+      <br><br>
+        <button class="btn btn-success btn-lg" ng-click="$ctrl.signupStepTwo()">Save</button>
+    </div>
+    <div class="errors">
+      {{errors}}
+      <br><br><br>
+    </div>
+</div>

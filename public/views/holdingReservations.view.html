@@ -1,0 +1,92 @@
+ 
+   
+<div class="chatBox">
+<ul class="chatText">
+   
+    <div><li>
+    <holding-reservation  ng-repeat="reservation in reservations" data="reservation"></holding-reservation>
+    </li></div>
+
+    
+</ul></div>
+
+
+<style>
+.chatBox
+{
+
+font-family: Verdana;
+font-size: 14px;
+color: #FFFFFF;
+border: 1px double #FFFFFF;
+padding: 500px;
+margin: 10px;
+height:600px;
+position:relative;
+border: 0px solid #E9E9E9;
+overflow:auto;
+float:left;
+
+}
+.chatBox ul
+{
+background: darkslategray;
+opacity: 1;
+list-style-type: none;
+padding: 10px;
+margin: 0px;
+position:absolute;
+overflow:auto;
+bottom:0;
+height:92%;
+}
+.chatBox ul li
+{
+  
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-bottom-color: #F2F2F2;
+margin-bottom: 0px;
+}
+.chatterName
+{
+width: 120px;
+background-color: #EEEEEE;
+color: #333333;
+float: left;
+font-size: 18px;
+text-align: center;
+border-right-style: solid;
+border-right-width: 1px;
+border-right-color: #CCCCCC;
+height: 40px;
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-bottom-color: #E6E6E6;
+}
+.chatterMessage
+{
+width: 91%;
+padding-left:4px;
+color: #FFFFFF;
+float:left;
+min-height:30px;
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-bottom-color: #EFEFEF;
+}
+.chatText
+{
+bottom: 0;
+left: 0;
+border-top-style: 0;
+border-right-style: 0;
+border-bottom-style: 1;
+border-left-style: 0;
+border-bottom-width: 1px;
+border-bottom-color: #E6E6E6;
+
+width:100%; 
+}
+
+</style>

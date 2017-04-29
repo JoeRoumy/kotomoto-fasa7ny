@@ -1,0 +1,30 @@
+<div class="ui container" style="padding-top:100px">
+	<center><div class="panel panel-warning  wow fadeInDown" data-wow-delay="0.2s" data-wow-duration="2s" style="width:500px" ng-if="wishList.length == 0">
+    <div class="panel-heading">No activity added to Wish List yet ...</div>
+  </div></center>
+	<table class="ui selectable sortable celled table" ng-if="wishList.length != 0">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Activity title</th>
+				<th>Type</th>
+				<th>Rating</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr id="row_{{$index}}" ng-repeat="wish in wishList">
+				<td>{{$index + 1}}</td>
+				<td><a href="/#/activity/{{wish._id}}" /a>{{wish.title}}</a></td>
+				<td>{{wish.type}}</td>
+				<td><star-rating-comp rating="wish.rating" show-hover-stars="false" read-only="true" size="'med'"></star-rating-comp></td>
+				<td style="width: 120px;">
+						
+						<!-- delete button -->
+						<div class="yellow btn btn-danger hvr-icon-sink-away" ng-click="dropActivity($index)" uib-tooltip="Delete wishList" style="height: 30px;width: 30px;border-radius: 15px;">
+						</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

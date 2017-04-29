@@ -1,0 +1,27 @@
+
+<script>
+// w3IncludeHTML();
+</script>
+<center>
+<div style="padding-top:75px;padding-bottom:50px">
+  <!--<center><div class="panel panel-warning  wow fadeInDown" data-wow-delay="0.2s" data-wow-duration="2s" style="width:500px" ng-if="serviceProviders.length == 0">
+    <div class="panel-heading">Sorry, no activities with these settings are available at the moment..</div>
+  </div></center>-->
+  <service-provider-box  ng-repeat="serviceProvider in serviceProviders.slice(((currentPage-1)*9), ((currentPage)*9))" data="serviceProvider"></service-provider-box>
+  <!-- <div style="display:inline-block;width:400px" ng-include="'components/activityBox/activityBox.template.html'" onload="a = activity" ng-repeat="activity in activities"></div> -->
+</div>
+
+<div class="clear"></div>
+<div class="row">
+<center>
+  <ul uib-pagination total-items="activities.length" items-per-page="9"
+  class="pagination-lg" boundary-links="true" ng-model="currentPage" rotate="false"
+  style="width: 100%;
+    margin: auto;
+    display: -webkit-inline-box;
+    padding: 30px;"></ul>
+</center>
+</div>
+
+
+</center>

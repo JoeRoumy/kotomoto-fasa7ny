@@ -1,0 +1,32 @@
+<div class="ui container" style="padding-top:100px">
+	<center><div class="panel panel-warning  wow fadeInDown" data-wow-delay="0.2s" data-wow-duration="2s" style="width:500px" ng-if="requests.length == 0">
+    <div class="panel-heading">No requests at the moment..</div>
+  </div></center>
+	<table class="ui selectable sortable celled table">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>legalProof</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr id="row_{{$index}}" ng-repeat="request in requests">
+				<td>{{$index + 1}}</td>
+				<td>{{request.title}}</td>
+				<td>{{request.description}}</td>
+				<td><a href="img/{{request.legalProof}}" class="btn btn-primary" target="_blank">view legalProof</a> </td>
+				<td style="width: 120px;">
+						<!-- accept button -->
+						<div  ng-click="accept($index)" class="btn btn-success hvr-icon-float-away" uib-tooltip="Accept" style="height: 30px;width: 30px;border-radius: 15px;">
+						</div>
+						<!-- refuse button -->
+						<div class="red btn btn-danger hvr-icon-sink-away" ng-click="refuse($index)" uib-tooltip="Reject" style="height: 30px;width: 30px;border-radius: 15px;">
+						</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

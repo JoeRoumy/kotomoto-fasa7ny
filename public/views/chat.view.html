@@ -1,0 +1,13 @@
+
+<script>
+// w3IncludeHTML();
+</script>
+<center>
+<div style="padding-top:75px;padding-bottom:50px">
+  <center><div class="panel panel-warning  wow fadeInDown" data-wow-delay="0.2s" data-wow-duration="2s" style="width:500px" ng-if="chats.length == 0">
+    <h1 >Sorry, no chats are available at the moment..</h1>
+  </div></center>
+  <chats  ng-repeat="chat in chats" data="chat"></chats>
+  <!-- <div style="display:inline-block;width:400px" ng-include="'components/activityBox/activityBox.template.html'" onload="a = activity" ng-repeat="activity in activities"></div> -->
+</div>
+</center>

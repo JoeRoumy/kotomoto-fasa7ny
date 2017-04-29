@@ -1,0 +1,131 @@
+<!-- start top Landing Page search gifs section -->
+  <top-search-gif></top-search-gif>
+<!-- End search gifs section -->
+
+<!--start steps section-->
+
+<section style="width:98%;display:block;text-align: -webkit-center; padding-top:20px; padding-bottom:20px">
+  <div class="steps-block wow flipInX animated" data-wow-duration="1s">
+    <i class="fa fa-search step-icon" aria-hidden="true"></i>
+    <h3>1. Search</h3>
+    <h4>Find nearby activities that suit your taste and budget</h4>
+  </div>
+  <div class="steps-block wow flipInX animated" data-wow-duration="1s" data-wow-delay="0.5s">
+    <i class="fa fa-bicycle step-icon" aria-hidden="true"></i>
+    <h3>2. Choose</h3>
+    <h4>Browse handreds of activities you like</h4>
+  </div>
+  <div class="steps-block wow flipInX animated" data-wow-duration="1s" data-wow-delay="1s">
+    <i class="fa fa-money step-icon" aria-hidden="true"></i>
+    <h3>3. Pay</h3>
+    <h4>Find suitable/safe payment methods in just few click!</h4>
+  </div>
+  <div class="steps-block wow flipInX animated" data-wow-duration="1s" data-wow-delay="1.5s">
+    <i class="fa fa-child step-icon" aria-hidden="true"></i>
+    <h3>4. Enjoy</h3>
+    <h4>Enjoy your experience with those you love</h4>
+  </div>
+  <div class="steps-block wow flipInX animated" data-wow-duration="1s" data-wow-delay="2s">
+    <i class="fa fa-question-circle step-icon" aria-hidden="true"></i>
+    <h3>Any problem?</h3>
+    <h4>we're here to help 24/7 through our bot</h4>
+  </div>
+</section>
+
+
+<style>
+.steps-block{
+  display: inline-block;
+  width:18%
+}
+.step-icon{
+  display:block;
+  color: #e9b232;
+  font-size: 80px;
+  text-align: -webkit-center;
+}
+</style>
+
+<!--end steps section-->
+
+<!-- start featured activities section -->
+<div class="contatiner">
+  <div class="col-lg-12 col-md-12 col-sm-12 wow swing center" data-wow-iteration="2">
+    <div class="client_title" style="padding: 50px 100px 30px 100px">
+      <hr>
+      <h2>Featured <span>Activities</span></h2>
+    </div>
+    <activities-accordian ng-if="FeaturedActivities" data="FeaturedActivities" ></activities-accordian>
+  </div>
+</div>
+<!-- end featured activities section -->
+
+<!-- start statistics section -->
+<!--needed scripts for counting animation-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+
+<div class="contatiner">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+        <statistics></statistics>
+  </div>
+</div>
+
+<!-- End statistics section -->
+
+<!-- map secion-->
+<div class="contatiner">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="client_title" style="padding: 50px 100px 30px 100px">
+      <hr>
+      <h2>Activities <span>Nearby</span></h2>
+    </div>
+    <map></map>
+  </div>
+</div>
+
+
+<!-- recent reviews section-->
+<div class="contatiner">
+  <div class="col-lg-12 col-md-12 col-sm-12 wow bounceInRight" data-wow-duration="1s" >
+    <div class="client_title" style="padding: 50px 100px 30px 100px">
+      <hr>
+      <h2>Recent reviews</h2>
+      <h3>Curious what others think? We have {{reviewsCount}} verified reviews written by real guests..</h3>
+    </div>
+    <review-box data="review" ng-repeat="review in reviews"></review-box>
+  </div>
+</div>
+
+<!-- top rated activities section-->
+<div class="contatiner">
+  <div class="col-lg-12 col-md-12 col-sm-12 wow bounceInLeft" data-wow-duration="1s" >
+    <div class="client_title" style="padding: 50px 100px 30px 100px">
+      <hr>
+      <h2>Still deciding where to go?</h2>
+      <h4>Let us make your decision easier! With over {{reviewsCount}} verified reviews, we can help you find the perfect place to go..</h4>
+    </div>
+    <activity-box data="activity" ng-repeat="activity in activities"></activity-box>
+  </div>
+
+<div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+ <div ng-controller="NewsLetterController" class="col-sm-7 wow bounceInDown" data-wow-duration="1s" >
+     <form class="navbar-form" role="search">
+     <div class="input-group">
+       <h1><strong>Save time, save money!</strong></h1>
+       <h4>Signup and we'll send the best deals for you</h4>
+       <div class="row" style="padding-left: 15px;">
+         <input type="text" class="form-control col-sm-4" ng-model="mail" placeholder="your e-mail please" name="mail">
+         <button class="btn btn-success col-sm-3" ng-click="subscribe(mail)">Subscribe</button>
+       </div>
+     </div>
+     </form>
+ </div>
+</div>
+</div>

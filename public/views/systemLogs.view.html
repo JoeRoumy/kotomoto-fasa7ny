@@ -1,0 +1,42 @@
+<br>
+<br>
+<br>
+<br>
+
+<div>
+  <h1><strong>Recent System Logs<strong></h1>
+</div>
+<br>
+<div ng-controller="adminPageController" class="yellow btn btn-danger hvr-icon-sink-away" ng-click="deleteLog()" uib-tooltip="Delete log" style="height: 30px;width: 30px;border-radius: 15px;">
+        </div>
+
+<table class="ui selectable sortable celled table" ng-if="logs.length !=0">
+  <thread>
+    <tr>
+
+  <!--table headers with Log Model attributes-->
+      <th>Type</th>
+      <th>Time</th>
+      <th>Error Message</th>
+    </tr>
+  </thread>
+  <tbody>
+    <tr id="row_{{$index}}" ng-repeat="Log in logs">
+
+  <!--Table data cells-->
+      <td style="width:350px;">{{Log.type}}</td>
+      <td style="width:350px;"><a>{{Log.time}}</a></td>
+      <td style="width:400px;">{{Log.errorMessage}}</td>
+
+
+
+
+
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<br>
+<br>
+<br>

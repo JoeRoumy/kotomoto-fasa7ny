@@ -1,0 +1,167 @@
+<div id="snow"></div>
+<div style="height:400px">
+	<slider data="media"></slider>
+</div>
+
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-4">
+			</div>
+			<div class="col-md-4">
+				<img alt="Bootstrap Image Preview" ng-src="img/{{serviceProvider.provider.media[0]}}" class="img-circle img-thumbnail" style=
+				"    position: absolute;
+				z-index: 99;
+				left: 133px;
+				top: -58px;
+				margin: auto;
+				display: block;
+				width: 200px;" />
+				<center><h2 style="padding-top:156px">{{serviceProvider.provider.title}}</h2>
+					<star-rating-comp rating="serviceProvider.provider.rating"
+					show-half-stars="true" show-hover-stars="false" read-only="true" size="'large'"></star-rating-comp>
+
+					<span class="label label-primary" style="margin-right:15px" ng-repeat="type in serviceProvider.provider.entertainmentType">{{type}}</span></center>
+					<h4 style="position: absolute;
+					left: -438px;
+					top: -13px;"><i class="fa fa-map-marker" aria-hidden="true"></i>{{serviceProvider.provider.branches[0]}} </h4>
+					<h4 style="position: absolute;
+					left: 450px;
+					width: 131px;
+					top: -13px;"><i class="fa fa-phone" aria-hidden="true"></i>{{serviceProvider.provider.contactMobile[0]}} </h4>
+					<center><a ng-click="subscribe(serviceProvider.provider._id)" class="btn btn-warning"    style= "margin-top: 20px;">Subscribe</a></center>
+				</div>
+				<div class="col-md-4">
+				</div>
+			</div>
+
+			<div class="contatiner">
+				<div class="col-lg-12 col-md-12 col-sm-12 wow swing center" data-wow-iteration="1">
+					<div class="client_title" style="padding: 50px 100px 30px 100px">
+						<hr>
+						<h2><span>Activities</span></h2>
+					</div>
+					<activities-accordian  data="serviceProvider.provider.activities" ></activities-accordian>
+				</div>
+			</div>
+
+			<h1>
+				Service Provider Description:
+			</h1>
+			<dl>
+				{{serviceProvider.provider.description}}
+			</dl>
+			<table class="table table-hover table-striped table-bordered" style="width: auto;margin: auto;">
+
+				<tbody>
+
+					<!--<tr>
+					<td>
+					Minimum age
+				</td>
+				<td>
+				<div ng-if="activity.minAge==-1" style="display:-webkit-inline-box ;">
+				-
+			</div>
+			<div ng-if="activity.minAge!=-1" style="display:-webkit-inline-box">
+			{{activity.minAge}}
+		</div>
+	</td>
+</tr>
+<tr>
+<td>
+Maximum age
+</td>
+<td>
+<div ng-if="activity.maxAge==-1" style="display:-webkit-inline-box ;">
+-
+</div>
+<div ng-if="activity.maxAge!=-1" style="display:-webkit-inline-box">
+{{activity.maxAge}}
+</div>
+</td>
+</tr>
+<tr>-->
+<!-- <td>
+Rating
+</td>
+<td>
+</td> -->
+</tr>
+<!--<tr>
+<td>
+Number of available timings
+</td>
+<td>
+{{activity.timings.length}}
+</td>
+</tr>-->
+</tbody>
+</table>
+
+
+<div class="contatiner">
+	<div class="col-lg-12 col-md-12 col-sm-12 wow bounceInRight" data-wow-duration="1s" ng-if="serviceProvider.provider.contactMobile.length==0" >
+		<div class="client_title" >
+			<hr>
+			<h2>Contact Mobile(s)</h2>
+			<h3>no current contact Mobiles for this service provider </h3>
+		</div>
+
+	</div>
+	<div class="col-lg-12 col-md-12 col-sm-12 wow bounceInRight" data-wow-duration="1s" ng-if="serviceProvider.provider.contactMobile.length!=0" >
+		<div class="client_title" >
+			<hr>
+			<h2>Contact Mobile(s)</h2>
+			<h3></h3>
+		</div>
+		<center>
+
+			<span class="label label-primary" style="margin-right:15px" ng-repeat="mobile in serviceProvider.provider.contactMobile">{{mobile}}</span>
+
+		</center>
+	</div>
+</div>
+
+</div>
+</div>
+
+
+<div class="contatiner" ng-if="serviceProvider != undefined">
+	<div class="col-lg-12 col-md-12 col-sm-12">
+		<div class="client_title" style="padding: 50px 100px 30px 100px">
+			<hr>
+			<h2>Activities Location</h2>
+		</div>
+
+		<map activities="serviceProvider.provider.activities"></map>
+	</div>
+</div>
+
+
+<br>
+<br>
+<div class="container">
+	<div class="row" style="margin-top:40px;">
+		<div class="col-md-6">
+			<div class="well well-sm">
+
+				<div class="row" id="post-review-box" >
+					<div class="col-md-12">
+						<form ng-submit="submitComplain()" accept-charset="UTF-8">
+
+							<textarea class="form-control animated" ng-model="complainBody" cols="50" id="new-complain" name="comment" placeholder="Enter your complain here..." rows="5"></textarea>
+
+							<div class="text-right" style="padding-top: 20px">
+								<!-- <div class="stars starrr" id="rate" ng-model="reviewObj.rate"  data-rating="0"></div> -->
+								<button class="btn btn-success btn-lg" type="submit">submit complain</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

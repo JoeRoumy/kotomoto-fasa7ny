@@ -1,0 +1,165 @@
+<br>
+<br>
+<br>
+<br>
+
+
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" style="
+    margin-right: 500px;
+" >
+
+
+         <div class="panel panel-info">
+           <div class="panel-heading">
+             <h3 class="panel-title">{{userProfile.firstName}} {{userProfile.lastName}}</h3>
+           </div>
+           <div class="panel-body">
+             <div class="row">
+               <div class="col-md-3 col-lg-3 " align="center">
+                 <img ng-if="$ctrl.data.userId.profilePicture== undefined"  class="img-circle img-responsive" src="https://www.campsitechatter.com/images/profile/default-male-250.png">
+                 <img ng-if="$ctrl.data.userId.profilePicture=='-1' && $ctrl.data.userId.gender==true" class="img-circle img-responsive" src="https://www.campsitechatter.com/images/profile/default-male-250.png">
+                 <img ng-if="$ctrl.data.userId.profilePicture=='-1' && $ctrl.data.userId.gender==false" class="img-circle img-responsive" src="http://www.baylogictech.com/images/default-female-250.jpg">
+                 <img ng-if="$ctrl.data.userId.profilePicture!='-1'" class="img-circle img-responsive" ng-src="img/{{userProfile.profilePicture}}">
+
+               </div>
+
+               <div class=" col-md-9 col-lg-9 ">
+                 <table class="table table-user-information">
+                   <tbody>
+                     <tr>
+                       <td>BirthDate:</td>
+                       <td>{{userProfile.birthDate |date:'shortDate' }}</td>
+                     </tr>
+                     <tr>
+                       <td>Gender:</td>
+                       <td >{{userProfile.gender?'male':'female'}}</td>
+                     </tr>
+                     <tr>
+                       <td>Mobile Number:</td>
+                       <td id="mobileNumber">{{userProfile.mobileNumber}}</td>
+                     </tr>
+                     <tr>
+                       <td>Profession:</td>
+                       <td id="profession">{{userProfile.profession}}</td>
+                     </tr>
+                     <tr>
+                       <td>Number of activities joined:</td>
+                       <td>{{userProfile.history.length}}</td>
+                     </tr>
+
+                   </tbody>
+                 </table>
+                 <a href="#" class="btn btn-primary">My WishList</a>
+                 <a href="/#/my_reviews" class="btn btn-primary">My Reviews</a>
+                 <a href="/#/my_bookings" class="btn btn-primary">My Bookings</a>
+                 <a href="" ng-click="editInfo()" class="btn btn-warning pull-right">{{editInfoBtnTxt}}</a>
+               </div>
+             </div>
+           </div>
+
+           <div class="panel-footer" style="    height: 40px;">
+           <style>
+           a#dropdown:hover {
+             color: #06d0d8!important;
+           }
+           #link:hover {
+             color: #06d0d8!important;
+           }
+           </style>
+             <ul class="nav navbar-nav">
+                   <li class="dropdown">
+                     <a id="dropdown" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="
+                     background: none;
+                     border: none;
+                     font-size: medium;
+                     color: #5e5e5e;
+                     font-family: 'Open Sans', sans-serif;
+                     font-weight: bold;
+                     padding-top: 14px;
+                     -webkit-transition: all 0.5s;
+                     -o-transition: all 0.5s;
+                     transition: all 0.5s;
+                     padding: 0px;
+                     ">Change your profile privacy? {{privacyLevel==0?"Public" :privacyLevel==1?"unprivate information":$privacyLevel==2?"name only":""}}
+                     <span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                       <!--<li><a href="#" ng-click="changePrivacy()">Any Day..</a></li>-->
+                       <li><a href="#/user" ng-click="changePrivacy(0)">public</a></li>
+                       <li><a href="#/user" ng-click="changePrivacy(1)">unprivate information</a></li>
+                       <li><a href="#/user" ng-click="changePrivacy(2)">name only</a></li>
+                    </ul>
+               </li>
+             </ul>
+             <span class="pull-right">
+               <div class="container panel panel-default" style="
+               width: auto !important;">
+                 <a id="link" href="/#/contact_platform" style="background: none;
+                 border: none;
+                 font-size: medium;
+                 cursor:pointer;
+                 color: #5e5e5e;
+                 font-family: 'Open Sans', sans-serif;
+                 font-weight: bold;
+                 padding-top: 14px;
+                 -webkit-transition: all 0.5s;
+                 -o-transition: all 0.5s;
+                 transition: all 0.5s;
+                 padding: 0px;">Contact Platform</a>
+               </div>
+             </span>
+           </div>
+
+         </div>
+       </div>
+
+
+<style>
+.user-row {
+    margin-bottom: 14px;
+}
+
+.user-row:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-user {
+    margin: 13px 0;
+    padding: 5px;
+    height: 100%;
+}
+
+.dropdown-user:hover {
+    cursor: pointer;
+}
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+.toppad
+{margin-top:20px;
+}
+
+.panel-default{
+  background: none;
+  border: none;
+}
+
+
+</style>
+
+
+<br><br>
+  <div >
+      <choose-interests></choose-interests>
+  </div>
+<br>
+<br>
