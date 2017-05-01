@@ -74,6 +74,7 @@ else {
   toastr.error("Account banned for "+data.banned+" days :(");
   else
   toastr.error(data);
+  console.log(data);
   }
 });
 };

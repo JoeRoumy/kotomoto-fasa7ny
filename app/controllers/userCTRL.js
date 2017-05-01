@@ -163,15 +163,19 @@ let userCTRL = {
         res.send(err? err:'not a user');
       }
       else{
-        if(userInstance.validPassword(req.body.oldPassword))
+        if(userInstance.validPassword(req.body.oldPassword)){
         userInstance.password=userInstance.generateHash(req.body.newPassword);
         userInstance.save(function(err){
           if(err)
           res.send(err);
           else
-          res.send('password change success !');
+          res.send({'ok':'ok'});
         });
       }
+      else
+      res.send({'ok':'bad pass'});
+
+    }
     }
   )
 },
@@ -395,12 +399,14 @@ userAddToWishList:function(req,res){
 userViewWishList:function(req,res){
   userCTRL.isUser(req,res);
 
-  User.findOne({userAccountId: req.user._id}).populate({path: 'wishlist'}).exec(function(err,wishList){
+  User.findOne({userAccountId: req.user._id}).exec(function(err,userr){
     if(err){
-      res.send(err);
+      globalCTRL.addErrorLog(err);
+      res.send({'error':err});
     }
     else{
-      res.send(wishList)
+      console.log(userr);
+      res.send({'wishlist':userr.wishlist})
     }
   })
 

@@ -4,8 +4,8 @@ myapp.factory('signupSRV',function ($http) {
       return $http.post('/signup',{'userName':userName,'password':password,'email':email,'type':type});
     },
 
-    sendUserProfileDetails:function(firstName,lastName,birthDate,gender,privacy) {
-      return $http.post('/signup_user',{'firstName':firstName,'lastName':lastName,'birthDate':birthDate,'gender':gender,'privacy':privacy});
+    sendUserProfileDetails:function(firstName,lastName,birthDate,gender,privacy,mobileNumber,profession) {
+      return $http.post('/signup_user',{'firstName':firstName,'lastName':lastName,'birthDate':birthDate,'gender':gender,'privacy':privacy,'mobileNumber':mobileNumber,'profession':profession});
     },
 
     sendServiceProviderProfileDetails:function(title,description,legalProof) {

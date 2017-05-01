@@ -34,7 +34,7 @@ let ServiceProviderCTRL = {
     req.checkBody('maxAge', 'maxClientNumber is a positive number').optional().isInt({ min: -1 });
     var errors = req.validationErrors();
     if (errors) {
-      res.send(errors);
+      res.send({"errors":errors});
       return;
     }
     //end validating
@@ -79,8 +79,9 @@ let ServiceProviderCTRL = {
 
         newActivity.save(function (err) {
           if (err) {
-            globalCTRL.addErrorLog(err.message);
-                        res.send(err.message);
+            globalCTRL.addErrorLog(err);
+            console.log(err);
+                        res.send({'errors':err});
           }
           else {
             res.send("activity added succesfully");
@@ -437,7 +438,7 @@ let ServiceProviderCTRL = {
          res.send(err.message);
        }
        else{
- Booking.find({providerId:sp._id, isHolding: true}).populate({path: "userId"}).exec(function(err, bookings){
+ Booking.find({serviceProviderId:sp._id, isHolding: true}).populate({path: "userId"}).exec(function(err, bookings){
         //when a booking is canceled, isHolding is set to false
         if(err){
           globalCTRL.addErrorLog(err.message);

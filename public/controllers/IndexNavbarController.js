@@ -13,11 +13,7 @@ myapp.controller('IndexNavbarController',function($window,$scope,$state,landingP
     return !($window.localStorage['userAccount']==undefined);
   }
   $scope.userType = function() {
-    return JSON.parse($window.localStorage['userAccount']).type;
-  }
-
-  $scope.signupStatechange = function(){
-    $state.go("signupLocal");
+    return ($window.localStorage['userAccount']==undefined)? -1:JSON.parse($window.localStorage['userAccount']).type;
   }
 
   $scope.myFasa7ny = function(index){

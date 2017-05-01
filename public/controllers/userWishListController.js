@@ -1,6 +1,10 @@
 myapp.controller('userWishListController', function($scope,userSRV) {
   userSRV.viewWishList().success(function(data){
+    if(!data.error)
     $scope.wishList = data.wishlist;
+    else {
+      toastr.error(data.error.message);
+    }
   });
 
   $scope.dropActivity= function(i){

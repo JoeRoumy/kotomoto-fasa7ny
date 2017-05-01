@@ -212,7 +212,8 @@ Router.post('/login', function(req, res, next) {
     if (err) { return res.send(err); }
    if (!user) { console.log('failed'); return res.send('failed'); }
    req.logIn(user, function(err) {
-     if (err) { console.log(22,err);return next(err); }
+     if (err) { console.log(err);return next(err); }
+     console.log(req.user);
      switch (req.user.type) {
          case 0:
          userCTRL.userLoginStep2(req,res);
@@ -224,7 +225,7 @@ Router.post('/login', function(req, res, next) {
              adminCTRL.adminLoginStep2(req,res);
              break;
          default:
-             globalCTRL.addErrorLog('login attempt with profile type '+req.body.type);
+             globalCTRL.addErrorLog({"message":'login attempt with profile type ','type':req.user.type});
              res.redirect('/logout');
              break;
        }
@@ -244,24 +245,12 @@ Router.get('/logout', function(req, res){
 
 
 
-//SignUp passport
-  // Router.get('/signup', function(req, res){
-	// 	res.send('signup page here');
-	// });
-  // Router.get('/signup_user', function(req, res){
-  // 		res.send('user signup page here');
-  // 	});
-  // Router.get('/signup_sp', function(req, res){
-  //   		res.send('sp signup page here');
-  //   	});
-  // Router.get('/signup_admin', function(req, res){
-  //     		res.send('admin signup page here');
-  //     	});
-
-
-
-
-	Router.post('/signup', passport.authenticate('local-signup'),function(req,res){
+	Router.post('/signup', function(req, res, next) {
+  passport.authenticate('local-signup',function(err, user, info){
+        if (err) { console.log(err);return res.send(err); }
+        if (!user) { console.log('failed'); return res.send('failed'); }
+        req.logIn(user, function(err) {
+              if (err) { console.log(err);return next(err); }
     if (!req.user) { return res.send({stepOneOK:0}); }
     switch (parseInt(req.body.type)) {
         case 0:
@@ -279,9 +268,10 @@ Router.get('/logout', function(req, res){
             res.redirect('/logout');
             break;
       }
+    });
+          })(req, res, next);
 
-	});
-
+      });
 
 //1.6 read about the platform through the “about us” option
 //tested

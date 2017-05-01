@@ -38,7 +38,7 @@ let visitorCTRL={
     Activity.find(function(err,activities){
       if(err)
       {
-        globalCTRL.addErrorLog(err.message);
+        globalCTRL.addErrorLog(err);
         res.send(err.message);
       }else
       {
@@ -60,16 +60,16 @@ let visitorCTRL={
     req.params.searchInput=req.params.searchInput=='_'?'':req.params.searchInput;
     req.params.day=req.params.day=='_'?'':req.params.day;
     //end validating
-    Activity.$where('(this.title.includes("'+req.params.searchInput+'") ||  this.type.includes("'+req.params.searchInput+'")) && (this.timings.filter(function(timing){return timing.day.includes("'+req.params.day+'")}))').exec(
-      function(err, activities){
+    Activity.$where('(this.title.toUpperCase().includes("'+req.params.searchInput.toUpperCase()+'") ||  this.type.toUpperCase().includes("'+req.params.searchInput.toUpperCase()+'")) && (this.timings.filter(function(timing){return timing.day.toUpperCase().includes("'+req.params.day.toUpperCase()+'")}))').exec(
+        function(err, activities){
         if(err){
-          globalCTRL.addErrorLog(err.message);
+          globalCTRL.addErrorLog(err);
           res.send(err.message);
         }
         else{
           Offer.find().exec(function(err,offers){
             if(err){
-              globalCTRL.addErrorLog(err.message);
+              globalCTRL.addErrorLog(err);
               res.send(err.message);
             }
             else{
@@ -85,14 +85,14 @@ let visitorCTRL={
       if(req.params.filter=="price")
       {
         console.log(req.params.value);
-        Activity.$where('this.prices[0].price > parseInt('+req.params.value+')').limit(10).exec(function(err,activities){
+        Activity.$where('this.prices[0].price > parseInt('+req.params.value+')').exec(function(err,activities){
           if(err){
-            globalCTRL.addErrorLog(err.message);
+            globalCTRL.addErrorLog(err);
             res.send(err.message);
           }else {
             Offer.find().exec(function(err,offers){
               if(err){
-                globalCTRL.addErrorLog(err.message);
+                globalCTRL.addErrorLog(err);
                 res.send(err.message);
               }
               else{
@@ -104,14 +104,14 @@ let visitorCTRL={
       } else 	if(req.params.filter=="offer")
       {
         console.log("okokokok");
-        Activity.find({isOffer: 1}).limit(10).exec(function(err,activities){
+        Activity.find({isOffer: 1}).exec(function(err,activities){
           if(err){
-            globalCTRL.addErrorLog(err.message);
+            globalCTRL.addErrorLog(err);
             res.send(err.message);
           }else {
             Offer.find().exec(function(err,offers){
               if(err){
-                globalCTRL.addErrorLog(err.message);
+                globalCTRL.addErrorLog(err);
                 res.send(err.message);
               }
               else{
@@ -125,7 +125,7 @@ let visitorCTRL={
       // {
       //   Activity.find({location: req.body.value}).limit(10).exec(function(err,activities){
       //     if(err){
-      //       globalCTRL.addErrorLog(err.message);
+      //       globalCTRL.addErrorLog(err);
       //       res.send(err.message);
       //     }else {
       //       res.send({activities});
@@ -135,7 +135,26 @@ let visitorCTRL={
       // else
       	if(req.params.filter=="theme")
       {
-        Activity.find({theme: req.params.value}).limit(10).exec(function(err,activities){
+        Activity.find({type: req.params.value}).exec(function(err,activities){
+          if(err){
+            globalCTRL.addErrorLog(err);
+            res.send(err.message);
+          }else {
+            Offer.find().exec(function(err,offers){
+              if(err){
+                globalCTRL.addErrorLog(err);
+                res.send(err.message);
+              }
+              else{
+                res.send({activities,offers});
+              }
+            })
+          }
+        })
+      }
+      else 	if(req.params.filter=="rating")
+      {
+        Activity.$where('this.rating >' + req.params.value).exec(function(err,activities){
           if(err){
             globalCTRL.addErrorLog(err.message);
             res.send(err.message);
@@ -151,17 +170,18 @@ let visitorCTRL={
             })
           }
         })
-      }
-      else 	if(req.params.filter=="rating")
+      }else if(req.params.filter=="bounded_price")
       {
-        Activity.$where('this.rating >' + req.params.value).limit(10).exec(function(err,activities){
+        var low = parseInt((req.params.value.split("_"))[0]);
+        var high= parseInt((req.params.value.split("_"))[1]);
+        Activity.$where('this.prices[0].price > parseInt(' + low+') && this.prices[0].price< parseInt('+high +')').exec(function(err,activities){
           if(err){
-            globalCTRL.addErrorLog(err.message);
+            globalCTRL.addErrorLog(err);
             res.send(err.message);
           }else {
             Offer.find().exec(function(err,offers){
               if(err){
-                globalCTRL.addErrorLog(err.message);
+                globalCTRL.addErrorLog(err);
                 res.send(err.message);
               }
               else{
@@ -183,7 +203,7 @@ let visitorCTRL={
       {
         Activity.find({prices: req.body.value}).limit(10).skip((req.session.j-1)*10).exec(function(err,activities){
           if(err){
-            globalCTRL.addErrorLog(err.message);
+            globalCTRL.addErrorLog(err);
             res.send(err.message);
           }else {
             res.send({activities});
@@ -193,7 +213,7 @@ let visitorCTRL={
       {
         Activity.find({isOffer: req.body.value}).limit(10).skip((req.session.j-1)*10).exec(function(err,activities){
           if(err){
-            globalCTRL.addErrorLog(err.message);
+            globalCTRL.addErrorLog(err);
             res.send(err.message);
           }else {
             res.send({activities});
@@ -203,7 +223,7 @@ let visitorCTRL={
       {
         Activity.find({location: req.body.value}).limit(10).skip((req.session.j-1)*10).exec(function(err,activities){
           if(err){
-            globalCTRL.addErrorLog(err.message);
+            globalCTRL.addErrorLog(err);
             res.send(err.message);
           }else {
             res.send({activities});
@@ -214,7 +234,7 @@ let visitorCTRL={
       {
         Activity.find({theme: req.body.value}).limit(10).skip((req.session.j-1)*10).exec(function(err,activities){
           if(err){
-            globalCTRL.addErrorLog(err.message);
+            globalCTRL.addErrorLog(err);
             res.send(err.message);
           }else {
             res.send({activities});
@@ -225,7 +245,7 @@ let visitorCTRL={
       {
         Activity.find({count: req.body.value}).limit(10).skip((req.session.j-1)*10).exec(function(err,activities){
           if(err){
-            globalCTRL.addErrorLog(err.message);
+            globalCTRL.addErrorLog(err);
             res.send(err.message);
           }else {
             res.send({activities});
@@ -247,7 +267,7 @@ let visitorCTRL={
         {
           Activity.find({prices: req.body.value}).limit(10).skip((req.session.j-1)*10).exec(function(err,activities){
             if(err){
-              globalCTRL.addErrorLog(err.message);
+              globalCTRL.addErrorLog(err);
               res.send(err.message);
             }else {
               res.send({activities});
@@ -257,7 +277,7 @@ let visitorCTRL={
         {
           Activity.find({isOffer: req.body.value}).limit(10).skip((req.session.j-1)*10).exec(function(err,activities){
             if(err){
-              globalCTRL.addErrorLog(err.message);
+              globalCTRL.addErrorLog(err);
               res.send(err.message);
             }else {
               res.send({activities});
@@ -267,7 +287,7 @@ let visitorCTRL={
         {
           Activity.find({location: req.body.value}).limit(10).skip((req.session.j-1)*10).exec(function(err,activities){
             if(err){
-              globalCTRL.addErrorLog(err.message);
+              globalCTRL.addErrorLog(err);
               res.send(err.message);
             }else {
               res.send({activities});
@@ -278,7 +298,7 @@ let visitorCTRL={
         {
           Activity.find({theme: req.body.value}).limit(10).skip((req.session.j-1)*10).exec(function(err,activities){
             if(err){
-              globalCTRL.addErrorLog(err.message);
+              globalCTRL.addErrorLog(err);
               res.send(err.message);
             }else {
               res.send({activities});
@@ -289,7 +309,7 @@ let visitorCTRL={
         {
           Activity.find({count: req.body.value}).limit(10).skip((req.session.j-1)*10).exec(function(err,activities){
             if(err){
-              globalCTRL.addErrorLog(err.message);
+              globalCTRL.addErrorLog(err);
               res.send(err.message);
             }else {
               res.send({activities});
@@ -316,7 +336,7 @@ let visitorCTRL={
         ServiceProvider.find({Approved:1}).skip(10*(req.session.pageID-1)).limit(11).populate({path:'activities'}).exec(function(err, providers){
 
           if(err){
-            globalCTRL.addErrorLog(err.message);
+            globalCTRL.addErrorLog(err);
             res.send(err.message);
           }else
           {
@@ -330,7 +350,7 @@ let visitorCTRL={
 
         ServiceProvider.$where('this.Approved == 1').exec(function(err, providers){
           if(err){
-            globalCTRL.addErrorLog(err.message);
+            globalCTRL.addErrorLog(err);
             res.send(err.message);
           }else
           {
@@ -355,7 +375,7 @@ let visitorCTRL={
         .populate({path: 'activities', options:{sort:{'rating':-1}}})
         .exec( function(err, provider){
           if(err){
-            globalCTRL.addErrorLog(err.message);
+            globalCTRL.addErrorLog(err);
             res.send(err.message);
           }else   {
             //get number of booked users for this service provider
@@ -372,14 +392,14 @@ let visitorCTRL={
                   //get best seller activity
                   Activity.findOne({_id:booking.activityId},function(err,bestSelledActivity){
                     if(err){
-                      globalCTRL.addErrorLog(err.message);
+                      globalCTRL.addErrorLog(err);
                       res.send(err.message);
                     }
                     else{
                       //get newest offer
                       Offer.find().sort({'_id':-1}).limit(1).populate({path: 'activities'}).exec(function(err, hottestOffer){
                         if(err){
-                          globalCTRL.addErrorLog(err.message);
+                          globalCTRL.addErrorLog(err);
                           res.send(err.message);
                         }
                         else{
@@ -401,7 +421,7 @@ let visitorCTRL={
             {
               if(err)
               {
-                globalCTRL.addErrorLog(err.message);
+                globalCTRL.addErrorLog(err);
                 res.send(err.message);
               }
               else
@@ -418,7 +438,7 @@ let visitorCTRL={
             {
               if(err)
               {
-                globalCTRL.addErrorLog(err.message);
+                globalCTRL.addErrorLog(err);
                 res.send(err.message);
               }
               else
@@ -438,7 +458,7 @@ let visitorCTRL={
             {
               if(err)
               {
-                globalCTRL.addErrorLog(err.message);
+                globalCTRL.addErrorLog(err);
                 res.send(err.message);
               }
               else
@@ -476,7 +496,7 @@ let visitorCTRL={
             user.save(function(err, user){
 
               if(err){
-                globalCTRL.addErrorLog(err.message);
+                globalCTRL.addErrorLog(err);
                 res.send(err.message);
               }else
               {
@@ -498,46 +518,50 @@ let visitorCTRL={
                       //end validating
                       Account.findOne({"userName": req.body.userName}, function(err, user){
                         if(err){
-                          globalCTRL.addErrorLog(err.message);
-                          res.send(err);
+                          globalCTRL.addErrorLog(err);
+                          res.send(err.message);
                         }
                         else{
                           if(!user){
-                            res.send("no account with this username");
+                            res.send({'user':'null'}); //changed
                           }
-                          randomPass=randomstring.generate(12);//generating randompass
-                          user.password=user.generateHash(randomPass);
-                          user.save(function(err){
-                            if(err){
-                              globalCTRL.addErrorLog(err.message);
-                              res.send(err);
-                            }
-                            else{
-                              var transporter = nodemailer.createTransport(smtpTransport({
-                                service: 'Hotmail',
-                                auth: {
-                                  user: 'fasa7ny@outlook.com', // Your email id
-                                  pass: 'ITJumoynyoj1' // Your password
-                                }
-                              }));
+                          else{
+                            randomPass=randomstring.generate(12);//generating randompass
+                            user.password=user.generateHash(randomPass);
+                            user.save(function(err){
+                              if(err){
+                                globalCTRL.addErrorLog(err);
+                                res.send(err.message);
+                              }
+                              else{
+                                var transporter = nodemailer.createTransport(smtpTransport({
+                                  service: 'Hotmail',
+                                  auth: {
+                                    user: 'fasa7ny@outlook.com', // Your email id
+                                    pass: 'ITJumoynyoj1' // Your password
+                                  }
+                                }));
 
-                              var mailOptions = {
-                                from: 'fasa7ny@outlook.com', // sender address
-                                to: user.email, // list of receivers
-                                subject: 'Change Password', // Subject line
-                                //text: text //, // plaintext body
-                                html: "Your password for now is "+randomPass// You can choose to send an HTML body instead
-                              };
-                              transporter.sendMail(mailOptions, function(error, info){
-                                if(error){
-                                  globalCTRL.addErrorLog(error);
-                                  res.send(error);
-                                }else{
-                                  res.send('Message sent: ' + info.response);
+                                var mailOptions = {
+                                  from: 'fasa7ny@outlook.com', // sender address
+                                  to: user.email, // list of receivers
+                                  subject: 'Change Password', // Subject line
+                                  //text: text //, // plaintext body
+                                  html: "Your password for now is "+randomPass// You can choose to send an HTML body instead
                                 };
-                              });
-                            }
-                          })
+                                transporter.sendMail(mailOptions, function(error, info){
+                                  if(error){
+                                    globalCTRL.addErrorLog(error);
+                                    res.send(error.message);
+                                  }else{
+                                    console.log(randomPass);
+                                    res.send({'ok':info.response});
+                                  };
+                                });
+                              }
+                            })
+                          }
+
 
 
                         }
@@ -565,7 +589,7 @@ let visitorCTRL={
               if(err){
                 if(err.message.includes("duplicate"))
                 res.send("email already signed up");
-                globalCTRL.addErrorLog(err.message);
+                globalCTRL.addErrorLog(err);
                 res.send(err);
               }else {
                 res.send(200);
@@ -584,7 +608,7 @@ let visitorCTRL={
             //end validating
             Account.findOne({email:req.body.email}).remove().exec(function(err){
               if(err){
-                globalCTRL.addErrorLog(err.message);
+                globalCTRL.addErrorLog(err);
                 res.send(err);
               }else {
                 res.send(200);
@@ -594,17 +618,17 @@ let visitorCTRL={
           getStatistics:function(req,res){
             Activity.count().exec(function(err,activityCount){
               if(err){
-                globalCTRL.addErrorLog(err.message);
+                globalCTRL.addErrorLog(err);
                 res.send(err);
               }else {
                 ServiceProvider.count({approved:0}).exec(function(err,SPcount){
                   if(err){
-                    globalCTRL.addErrorLog(err.message);
+                    globalCTRL.addErrorLog(err);
                     res.send(err);
                   }else {
                     Booking.count({isCancelled:0}).exec(function(err,BookingsCount){
                       if(err){
-                        globalCTRL.addErrorLog(err.message);
+                        globalCTRL.addErrorLog(err);
                         res.send(err);
                       }else {
                         res.send({'activityCount':activityCount,'SPcount':SPcount,'BookingsCount':BookingsCount})
@@ -620,7 +644,7 @@ let visitorCTRL={
             Activity.$where('(Math.abs(parseFloat((this.location.split(","))[0])-parseFloat('+req.body.lat+'))<0.2) && (Math.abs(parseFloat((this.location.split(","))[1])-parseFloat('+req.body.long+'))<0.2)').exec(
               function(err,activities){
                 if(err){
-                  globalCTRL.addErrorLog(err.message);
+                  globalCTRL.addErrorLog(err);
                   res.send(err);
                 }else{
                   res.send({activities});
@@ -630,7 +654,7 @@ let visitorCTRL={
           getActivityById:function(req,res){
             Activity.findOne({_id:req.params.activityID}).populate('serviceProviderId').exec(function(err,activity){
               if(err){
-                globalCTRL.addErrorLog(err.message);
+                globalCTRL.addErrorLog(err);
                 res.send(err);
               }else{
                 res.send({activity});
@@ -647,12 +671,12 @@ let visitorCTRL={
             .exec(
               function(err,reviews){
                 if(err){
-                  globalCTRL.addErrorLog(err.message);
+                  globalCTRL.addErrorLog(err);
                   res.send(err);
                 }else{
                   Review.count().exec(function(err,reviewsCount){
                     if(err){
-                      globalCTRL.addErrorLog(err.message);
+                      globalCTRL.addErrorLog(err);
                       res.send(err);
                     }else{
                       res.send({reviews,reviewsCount});
@@ -670,7 +694,7 @@ let visitorCTRL={
             .exec(
               function(err,reviews){
                 if(err){
-                  globalCTRL.addErrorLog(err.message);
+                  globalCTRL.addErrorLog(err);
                   res.send(err);
                 }else{
                   res.send(reviews);
@@ -682,7 +706,7 @@ let visitorCTRL={
             .limit(6)
             .exec(function(err,activities){
               if(err){
-                globalCTRL.addErrorLog(err.message);
+                globalCTRL.addErrorLog(err);
                 res.send(err);
               }else{
                 res.send({activities});
@@ -692,7 +716,7 @@ let visitorCTRL={
           getFeaturedActivities: function(req,res){
             ServiceProvider.$where('this.isGolden==true').populate('activities').exec(function(err,serviceProviders){
               if(err){
-                globalCTRL.addErrorLog(err.message);
+                globalCTRL.addErrorLog(err);
                 res.send(err);
               }else{
                 let activities=[];

@@ -137,7 +137,7 @@
 
           <!-- login and signup -->
           <li class="active"><a  ng-controller="logInController" style="cursor: pointer;" ng-click="loginModal()" ng-show = "isLoggedIn() == false">Log in</a></li>
-          <li class="active"><a href="" ng-click = "signupStatechange()" ng-show = "isLoggedIn() == false" >Signup</a></li>
+          <li class="active"><a href="/#/signup/user" ng-show = "isLoggedIn() == false" >Signup</a></li>
 
           <!-- logout button -->
           <li class="active"><a href="" ng-click = "logout()"  ng-show = "isLoggedIn() == true" >Logout</a></li>
@@ -227,7 +227,7 @@
                               <input type="password" class="form-control" ng-model="password" placeholder="Password" required />
                           </div>
                           <p>
-                              <a href="http://www.jquery2dotnet.com">Lost your password?</a></p>
+                              <a href="/#/recover_password" ng-click="cancelLogin()">Lost your password?</a></p>
                           Don't have an account? <a href="" ng-click="signupStatechange()">Sign up here</a>
                           </form>
                       </div>
@@ -353,8 +353,11 @@ box-shadow: inset 0 0 0px black;
               <p>All rights reserved </p>
             </div>
             <div class="developer">
-              <p>Designed By Tweety</p>
-              <a href="/#/FAQ" >FAQ</a>
+              <p>Designed By Kotomoto</p>
+              <span><a href="/#/signup/sp">Want to see your activities here?</a></span>
+              &nbsp;&nbsp;
+              <span><a href="/#/FAQ" >  FAQ</a></span>
+
             </div>
           </div>
         </div>
@@ -397,6 +400,10 @@ box-shadow: inset 0 0 0px black;
   <script src="controllers/AdminViewSpRequestsController.js"></script>
   <script src="controllers/confirmCheckinController.js"></script>
   <script src="controllers/userWishListController.js"></script>
+  <script src="controllers/changePasswordController.js"></script>
+  <script src="controllers/recoverPasswordController.js"></script>
+
+
   <!-- importing components -->
   <script src="components/slider/slider.component.js"></script>
   <script src="components/topSearchGif/topSearchGif.component.js"></script>
@@ -438,8 +445,10 @@ box-shadow: inset 0 0 0px black;
   <script src="services/promotionsSRV.js"></script>
   <script src="services/adminSRV.js"></script>
   <script src="services/serviceProviderSRV.js"></script>
-
+  <script src="services/changePasswordSRV.js"></script>
   <script src="services/confirmCheckinSRV.js"></script>
+  <script src="services/recoverPasswordSRV.js"></script>
+
   <!-- For content animatin  -->
   <script src="js/wow.min.js"></script>
   <!-- bootstrap js file -->

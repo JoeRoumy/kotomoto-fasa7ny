@@ -29,14 +29,15 @@ let globalCTRL ={
 
   sendNewsletter: function(){
 
-    Account.find({"type":2},'email',function(err, visitorMails){
-      if(err)
+    Account.find({"type":2},function(err, visitorMails){
+      if(err){
       console.log(err);
+    globalCTRL.addErrorLog(err);}
       else {
-
         Offer.find().sort({'_id':-1}).limit(5).populate({path: 'activities'}).exec(function(err, hottestOffers){
-          if(err)
+          if(err){
           console.log(err);
+        globalCTRL.addErrorLog(err);}
           else {
             var transporter = nodemailer.createTransport(smtpTransport({
               service: 'Hotmail',
@@ -46,21 +47,22 @@ let globalCTRL ={
               }
             }));
 
+            var names = visitorMails.map(function(item) {
+              return item.email;
+                });
+
+                console.log(names);
             var mailOptions = {
               from: 'fasa7ny@outlook.com', // sender address
-              to: visitorMails, // list of receivers
+              to: names, // list of receivers
               subject: 'Your Password', // Subject line
-              //text: text //, // plaintext body
               html: hottestOffers// You can choose to send an HTML body instead
             };
             transporter.sendMail(mailOptions, function(error, info){
-              if(error){
-                console.log(error);
-                res.send(error);
-              }else{
+              if(error){globalCTRL.addErrorLog(error);
+                console.log(error);}
+                else
                 console.log('Message sent: ' + info.response);
-                res.redirect(200);
-              };
             });
 
           }
@@ -96,7 +98,7 @@ let globalCTRL ={
   validateSession : function(req,res) {
     Account.findOne({'_id':req.body.usr._id,'email':req.body.usr.email,'userName':req.body.usr.userName,'password':req.body.usr.password},function(err,val) {
       if(err){
-        globalCTRL.addErrorLog(er);
+        globalCTRL.addErrorLog(err);
         res.send('failed');
       }
       else {

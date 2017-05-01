@@ -20,28 +20,28 @@ myapp.controller('addActivityController', function($scope, $state, activitySRV,$
     var prices=new Array();
     for(var i=0;i<price.length;i++){
       prices.push({
-        price:price[i],
-        numberOfClients: numberOfClients[i]
+        'price':price[i],
+        'numberOfClients': numberOfClients[i]
       });
     }
-
     var timings=new Array();
     for(var i=0;i<10;i++){
-    if(document.getElementById('day_'+i) ==undefined)
-    return;
+    if(document.getElementById('day_'+i) !=undefined)
       timings.push({
         day:document.getElementById('day_'+i).value,
         startTime: document.getElementById('time_'+i).value
       });
+      else break;
 
     }
-    console.log(timings);
 
-    // alert($window.localStorage['location']);
+    var location="dummy location";
 
-
-    activitySRV.addActivity($scope.title, $scope.type, $scope.durationInMinutes,$scope.minClientNumber,$scope.maxClientNumber,$scope.minAge,$scope.maxAge,$scope.theme,prices,$window.localStorage['location'],timings).success(function(){
+    activitySRV.addActivity($scope.title, $scope.type, $scope.durationInMinutes,$scope.minClientNumber,$scope.maxClientNumber,$scope.minAge,$scope.maxAge,$scope.theme,prices,location,timings).success(function(data){
+      if(data=="activity added succesfully")
       toastr.success('Activity added succcessfully');
+      else
+      toastr.error(data.errors.message);
     })
   }
 });

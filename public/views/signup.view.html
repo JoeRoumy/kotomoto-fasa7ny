@@ -1,3 +1,38 @@
+<script type="text/javascript">
+
+function checkForm(form)
+{
+  if(form.Pass.value.length < 8) {
+    alert("Error: Password must contain at least 8 characters!");
+    form.Pass.focus();
+    return false;
+  }
+  re = /[0-9]/;
+  if(!re.test(form.Pass.value)) {
+    alert("Error: password must contain at least one number (0-9)!");
+    form.Pass.focus();
+    return false;
+  }
+  re= /[!@#\$%\^\&*\)\(+=._-]/
+    if(!re.test(form.Pass.value)) {
+      alert("Error: password must contain at least one special character!");
+      form.Pass.focus();
+      return false;
+    }
+  if(form.Pass.value!=form.Pass2.value) {
+    alert("Error: Passwords must match!");
+    form.Pass.focus();
+    return false;
+  }
+  var el = document.querySelector('.g-te');
+              $el = angular.element(el);
+              $scope = $el.scope();
+              $scope.signupStepOne();
+}
+
+</script>
+
+
 <div class="container" style="padding-top: 56px;     width: 100%;">
     <div class="row">
     	<section style="background-color: white;">
@@ -79,7 +114,7 @@
 
 					</div>
 
-            <form role="form" style="width: 70%;margin: auto;padding-top: 185px;">
+            <form class="g-te" role="form" onsubmit="checkForm(this)" style="width: 70%;margin: auto;padding-top: 185px;">
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
                         <div class="step1">
@@ -105,17 +140,17 @@
                             </div>
                             <div class="col-md-6">
                                 <label><span style="color:red">*</span>Username</label>
-                                <input type="text" class="form-control" ng-model="username" placeholder="Username" ng-required="true">
+                                <input type="text" class="form-control" ng-model="userName" placeholder="Username" ng-required="true">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <label><span style="color:red">*</span>Password</label>
-                                <input type="password" class="form-control" ng-model="password" placeholder="Password" ng-required="true">
+                                <input name = "Pass" type="password" class="form-control" ng-model="password" placeholder="Password" ng-required="true">
                             </div>
 														<div class="col-md-6">
                                 <label><span style="color:red">*</span>Confirm Password</label>
-                                <input type="password" ng-required="true" class="form-control" placeholder="Confirm Password" >
+                                <input name = "Pass2" type="password" ng-required="true" class="form-control" placeholder="Confirm Password" >
                             </div>
                         </div>
 
@@ -129,7 +164,7 @@
 													<div class="row">
 														<div class="col-md-4 col-xs-3">
 															<label align="right"><stong>Date of birth</stong></label>
-															<div uib-datepicker ng-model="birthDate" ></div>
+															<div uib-datepicker ng-model="bdate" ></div>
 														</div>
 													</div>
 
@@ -138,7 +173,7 @@
 												<div class="row">
 													<div class="col-md-4 col-xs-3">
 															<label align="right">Mobile Number</label>
-															<input type="Number" class="form-control" ng-model="mobileNumber" placeholder="Mobile Number">
+                              <input type="text" class="form-control" ng-model="mobileNumber" placeholder="Mobile Number" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"></input>
 													</div>
 												</div>
 
@@ -162,10 +197,12 @@
 													</div>
 														<div class="col-md-8 col-xs-9">
 																<label class="radio-inline">
-																	<input type="radio" name="inlineRadioOptions" ng-model="gender"  value="true"> Male
-																</label>
+                                  <input type="radio" name="gender" ng-model="type" checked="true" > Male </input>
+                                </label>
+
+
 																<label class="radio-inline">
-																	<input type="radio" name="inlineRadioOptions" ng-model="gender"  value="female"> Female
+																	<input type="radio" name="gender" ng-model="type" ng-value="false" > Female </input>
 																</label>
 														</div>
 												</div>
@@ -174,10 +211,6 @@
 															<label>Profession</label>
 															<input type="text" class="form-control" ng-model="profession" placeholder="Profession">
 													</div>
-												</div>
-
-												<div class="row">
-													<label>Interests choice should go there</label>
 												</div>
 
 												<div class="clear"></div>
@@ -224,7 +257,7 @@
 
 
 <!-- Basic signup info -->
-<div ng-controller= "signupController" class="container">
+<div ng-controller= "signupController" ng-show="isSP()" class="container">
 	<div class="row" style="margin-top:40px;">
 		<div class="col-md-6">
     	<div class="well well-sm">

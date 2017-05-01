@@ -1,6 +1,7 @@
 //add dependencies
 var express= require('express');
 var app=express();
+require('run-middleware')(app)
 var bodyParser= require('body-parser');
 var mongoose = require('mongoose');
 var DB_URI_LOCAL="mongodb://localhost:27017/protoflio";
@@ -9,6 +10,9 @@ var passport = require('passport');
 var schedule = require('node-schedule');
 var globalCTRL = require('./app/controllers/globalCTRL');
 var expressValidator = require('express-validator');
+var request = require('request')
+
+
 
 //configure app
 app.use(bodyParser.urlencoded({extended:false})); //this line must be on top of app config
@@ -52,7 +56,9 @@ require('./app/config/passport')(passport);
 app.use(require('./app/routes')(passport));
 
 
+
+
 //start the server
-app.listen(8080,function(){
+app.listen(process.env.PORT ||8080,function(){
   console.log("the app is listening on port 8080");
 });

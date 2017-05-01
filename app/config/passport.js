@@ -53,7 +53,9 @@ module.exports = function(passport) {
                 newAccount.save(function(err) {
                     if (err){
                         globalCTRL.addErrorLog(err);
-                        return done(err);
+                        if(err.message.indexOf("E11000 duplicate key error index: fasa7ny.accounts.$email_1 dup key")!=-1)
+                        return done("Duplicate email", false);
+                      return done(err);
                       }
                     return done(null, newAccount);
                     //redirect to different views according to type
